@@ -16,6 +16,8 @@
     --slate: #3d4a5c;
     --faded: #6b5e4a;
     --highlight: #f0c060;
+    --text-body: #2a2015;
+    --text-muted: #3d3020;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -74,7 +76,7 @@
   .subtitle {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
-    color: #3d3020;
+    color: var(--text-muted);
     margin-top: 16px;
     max-width: 480px;
     line-height: 1.7;
@@ -84,7 +86,7 @@
     text-align: right;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
-    color: #3d3020;
+    color: var(--text-muted);
     line-height: 2;
     border-left: 1px solid var(--aged);
     padding-left: 24px;
@@ -159,7 +161,7 @@
   }
   .section-desc {
     font-size: 13px;
-    color: #3d3020;
+    color: var(--text-muted);
     margin-top: 6px;
     line-height: 1.6;
   }
@@ -168,7 +170,7 @@
   p {
     font-size: 14px;
     line-height: 1.85;
-    color: #2a2015;
+    color: var(--text-body);
     margin-bottom: 16px;
     max-width: 720px;
   }
@@ -176,12 +178,12 @@
   .callout {
     border-left: 3px solid var(--rust);
     padding: 12px 20px;
-    background: rgba(181,69,27,0.05);
+    background: rgba(181,69,27,0.08);
     margin: 24px 0;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     line-height: 1.7;
-    color: #2a2015;
+    color: var(--text-body);
     max-width: 720px;
   }
 
@@ -344,7 +346,7 @@
 
   .sim-display {
     border: 1px solid var(--aged);
-    background: #fdfaf2;
+    background: var(--paper);
     padding: 28px;
     min-height: 300px;
     position: relative;
@@ -422,7 +424,7 @@
     font-size: 11px;
   }
   .person-loc {
-    color: #3d3020;
+    color: var(--text-muted);
     line-height: 1.6;
   }
   .person-occasion {
@@ -457,10 +459,10 @@
   .log-entry {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
-    color: #3d3020;
+    color: var(--text-muted);
     line-height: 1.8;
     padding: 2px 0;
-    border-bottom: 1px dotted rgba(0,0,0,0.08);
+    border-bottom: 1px dotted var(--aged);
     animation: fadeIn 0.4s ease;
   }
   .log-entry.highlight { color: var(--rust); font-weight: 500; }
@@ -541,7 +543,7 @@
 
   .tree-branch-label {
     font-size: 9px;
-    color: #3d3020;
+    color: var(--text-muted);
     margin-bottom: 4px;
     letter-spacing: 0.08em;
     text-align: center;
@@ -587,7 +589,7 @@
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     width: 80px;
-    color: #2a2015;
+    color: var(--text-body);
     flex-shrink: 0;
   }
   .factor-bar-track {
@@ -607,7 +609,7 @@
     font-size: 10px;
     width: 40px;
     text-align: right;
-    color: #3d3020;
+    color: var(--text-muted);
   }
 
   .prob-display {
@@ -635,7 +637,7 @@
   .prob-text {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
-    color: #2a2015;
+    color: var(--text-body);
     line-height: 1.7;
   }
 
@@ -652,7 +654,7 @@
   .islider-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
-    color: #2a2015;
+    color: var(--text-body);
     width: 160px;
     flex-shrink: 0;
   }
@@ -678,6 +680,43 @@
     main { padding: 32px 24px 64px; }
     .social-chart { grid-template-columns: 1fr; }
     .header-meta { display: none; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #f0e8d8;
+      --paper: #1a1610;
+      --aged: #383024;
+      --rust: #d4673e;
+      --gold: #d4a840;
+      --moss: #6a9060;
+      --slate: #6a80a0;
+      --faded: #9a8870;
+      --text-body: #d8ccb8;
+      --text-muted: #b0a090;
+    }
+
+    body::before {
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,0.02) 28px, rgba(255,255,255,0.02) 29px),
+        repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(255,255,255,0.012) 48px, rgba(255,255,255,0.012) 49px);
+    }
+
+    code {
+      background: #2e2820;
+      color: var(--text-body);
+    }
+
+    .callout {
+      background: rgba(212,103,62,0.12);
+    }
+
+    .person-card.socializing { background: rgba(212,103,62,0.1); }
+    .person-card.observing   { background: rgba(106,144,96,0.1); }
+
+    .badge-implant { color: #1a1208; }
+
+    nav button:hover { color: var(--ink); }
   }
 </style>
 </head>
@@ -863,7 +902,7 @@
       <div class="sim-progress-bar">
         <div class="sim-progress-fill" id="simProgress" style="width:0%"></div>
       </div>
-      <div id="simPhaseLabel" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3d3020;margin-bottom:16px;letter-spacing:.08em;text-transform:uppercase">
+      <div id="simPhaseLabel" style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-bottom:16px;letter-spacing:.08em;text-transform:uppercase">
         Phase: Awaiting first step
       </div>
       <div class="persons-grid" id="personsGrid"></div>
@@ -967,7 +1006,7 @@
           </div>
         </div>
 
-        <div style="margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3d3020;line-height:2">
+        <div style="margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);line-height:2">
           <div>Floor: 0.05 &nbsp;·&nbsp; Cap: 0.80</div>
           <div id="extClamp" style="color:var(--faded)">Ext component: 0.05 – 0.50</div>
           <div id="relNote">Relationship bonus: +0.00</div>
@@ -1268,7 +1307,7 @@ function renderSim(logEntries) {
     const emoji = ch.socializing ? '&#128172;' : ch.observing ? '&#128065;' : '';
     card.innerHTML = `
       <div class="person-name">${ch.name}</div>
-      <div class="person-loc">${ch.location}<br><span style="color:#6b5e4a">${ch.job || (ch.age ? 'Child' : 'Unemployed')}</span></div>
+      <div class="person-loc">${ch.location}<br><span style="color:var(--faded)">${ch.job || (ch.age ? 'Child' : 'Unemployed')}</span></div>
       <div class="person-occasion occ-${ch.occasion}">${ch.occasion}</div>
       ${emoji ? `<div class="activity-badge">${emoji}</div>` : ''}
     `;
