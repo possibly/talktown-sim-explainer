@@ -673,6 +673,275 @@
     margin: 48px 0 32px;
   }
 
+  /* ── CHARACTER THREAD ───────────────────────── */
+  .char-thread {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border: 1px solid var(--aged);
+    border-left: 3px solid var(--rust);
+    margin: 0 0 28px;
+    background: rgba(181,69,27,0.04);
+    max-width: fit-content;
+  }
+  .char-thread-name { color: var(--rust); font-weight: 500; }
+  .char-thread-sep { color: var(--aged); }
+
+  /* ── EVENTS / NEWSPAPER ──────────────────────── */
+  .newspaper {
+    margin: 8px 0 32px;
+    column-count: 2;
+    column-gap: 32px;
+    column-rule: 1px solid var(--aged);
+    min-height: 180px;
+  }
+  @media (max-width: 600px) { .newspaper { column-count: 1; } }
+
+  .newspaper-placeholder {
+    column-span: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 32px;
+    border: 1px dashed var(--aged);
+    border-radius: 2px;
+  }
+  .newspaper-ph-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .event-item { break-inside: avoid; margin-bottom: 20px; }
+  .evt-type-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--faded);
+    margin-bottom: 4px;
+  }
+  .evt-birth { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--aged); padding: 10px 0; text-align: center; }
+  .evt-birth-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; }
+  .evt-birth-detail { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+  .evt-death { border: 2px solid var(--ink); padding: 12px 16px; background: var(--aged); }
+  .evt-death-name { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; font-weight: 700; }
+  .evt-death-detail { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--faded); margin-top: 6px; }
+
+  .evt-marriage { text-align: center; border-left: 3px double var(--rust); border-right: 3px double var(--rust); padding: 10px 16px; }
+  .evt-marriage-names { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; }
+  .evt-marriage-detail { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+  .evt-hiring { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-body); padding: 8px 0; border-bottom: 1px dotted var(--aged); letter-spacing: 0.04em; }
+
+  .evt-business { border: 2px solid var(--rust); padding: 10px 16px; text-align: center; }
+  .evt-business-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--rust); }
+  .evt-business-detail { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+  .evt-retirement { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-muted); padding: 8px 0; border-top: 1px solid var(--aged); font-style: italic; }
+
+  /* ── RELATIONSHIP GRAPH ──────────────────────── */
+  .rel-layout {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 24px;
+    align-items: start;
+    margin: 24px 0 32px;
+  }
+  @media (max-width: 700px) { .rel-layout { grid-template-columns: 1fr; } }
+
+  .rel-graph-wrap { border: 1px solid var(--aged); background: var(--paper); padding: 8px; }
+  .rel-panel {
+    border: 1px solid var(--aged);
+    padding: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    min-height: 220px;
+  }
+  .rel-pair-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .rel-stat-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 11px; color: var(--text-muted); }
+  .rel-stat-row span:last-child { font-weight: 500; color: var(--text-body); }
+  .rel-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .rel-badge.friends { background: var(--moss); color: #fff; }
+  .rel-badge.enemies { background: var(--rust); color: #fff; }
+  .rel-badge.bestfriends { background: #2a6e3e; color: #fff; }
+  .rel-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+  .rel-legend-item { display: flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-muted); }
+  .rel-legend-swatch { width: 32px; height: 3px; border-radius: 2px; }
+
+  /* ── BELIEFS ─────────────────────────────────── */
+  .beliefs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0;
+  }
+  @media (max-width: 620px) { .beliefs-grid { grid-template-columns: 1fr; } }
+
+  .belief-panel { border: 1px solid var(--aged); padding: 20px; }
+  .bp-header {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faded);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--aged);
+  }
+  .bp-true { border-top: 3px solid var(--moss); }
+  .bp-model { border-top: 3px solid var(--rust); }
+
+  .belief-attr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+  }
+  .belief-attr-key { width: 96px; color: var(--faded); flex-shrink: 0; }
+  .belief-attr-val { width: 76px; color: var(--text-body); font-weight: 500; flex-shrink: 0; }
+  .belief-attr-val.uncertain { color: var(--gold); }
+  .belief-attr-val.wrong { color: var(--rust); text-decoration: line-through dotted; }
+  .belief-conf-track { flex: 1; height: 5px; background: var(--aged); border-radius: 3px; overflow: hidden; }
+  .belief-conf-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+  .belief-conf-pct { width: 34px; text-align: right; color: var(--text-muted); font-size: 9px; flex-shrink: 0; }
+
+  .belief-controls { margin: 20px 0; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+
+  /* Gossip graph */
+  .gossip-wrap { border: 1px solid var(--aged); padding: 16px; margin: 20px 0; }
+  .gossip-svg-container { overflow-x: auto; }
+  .gossip-step-info { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); margin-top: 12px; min-height: 36px; line-height: 1.7; }
+
+  /* ── FACES ───────────────────────────────────── */
+  .faces-layout {
+    display: grid;
+    grid-template-columns: 220px 220px 1fr;
+    gap: 24px;
+    align-items: start;
+    margin: 24px 0;
+  }
+  @media (max-width: 700px) { .faces-layout { grid-template-columns: 1fr 1fr; } }
+
+  .face-card { border: 1px solid var(--aged); padding: 16px; text-align: center; }
+  .face-card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faded);
+    margin-bottom: 12px;
+  }
+  .face-true .face-card-title { color: var(--moss); }
+  .face-witness .face-card-title { color: var(--rust); }
+
+  .face-attr-grid { margin-top: 12px; text-align: left; }
+  .face-attr-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 3px 0;
+    border-bottom: 1px dotted var(--aged);
+    gap: 6px;
+  }
+  .face-attr-row:last-child { border-bottom: none; }
+  .fa-key { color: var(--faded); flex-shrink: 0; }
+  .fa-val { color: var(--text-body); font-weight: 500; }
+  .fa-val.drifted { color: var(--rust); }
+  .fa-conf { font-size: 8px; color: var(--text-muted); }
+
+  .face-controls { border: 1px solid var(--aged); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .face-controls .fc-title { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faded); margin-bottom: 4px; }
+
+  /* ── ECONOMY ─────────────────────────────────── */
+  .era-slider-wrap {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .era-slider-wrap input[type=range] { flex: 1; max-width: 400px; }
+  .era-label { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--rust); white-space: nowrap; }
+  .era-tick-row { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--faded); max-width: 420px; padding: 0 2px; margin-top: -4px; }
+
+  .economy-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
+    align-items: start;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .economy-layout { grid-template-columns: 1fr; } }
+
+  .town-ledger { border: 1px solid var(--aged); }
+  .ledger-header {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faded);
+    padding: 10px 16px;
+    border-bottom: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 80px 64px;
+    gap: 8px;
+  }
+  .ledger-row {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--aged);
+    display: grid;
+    grid-template-columns: 1fr 80px 64px;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .ledger-row:hover { background: rgba(181,69,27,0.05); }
+  .ledger-row.selected { background: rgba(181,69,27,0.08); border-left: 3px solid var(--rust); }
+  .ledger-row:last-child { border-bottom: none; }
+  .lr-name { color: var(--text-body); font-weight: 500; }
+  .lr-owner { color: var(--text-muted); }
+  .lr-level { text-align: right; }
+  .level-badge { display: inline-block; padding: 1px 6px; border-radius: 2px; font-size: 9px; }
+  .lvl-1 { background: #3a3028; color: #bbb; }
+  .lvl-2 { background: #2a4a3a; color: #8ec; }
+  .lvl-3 { background: #3a3a60; color: #aaf; }
+  .lvl-4 { background: #5a2a10; color: #f9a; }
+  .lvl-5 { background: #6a4a00; color: #fd8; }
+
+  .biz-detail { border: 1px solid var(--aged); padding: 16px; min-height: 200px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .biz-detail-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .biz-detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 10px; color: var(--text-muted); }
+  .biz-detail-row span:last-child { color: var(--text-body); }
+  .biz-employees { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--aged); }
+  .biz-emp-title { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--faded); margin-bottom: 8px; }
+  .biz-emp-row { display: flex; justify-content: space-between; font-size: 10px; padding: 3px 0; border-bottom: 1px dotted var(--aged); }
+  .biz-emp-row:last-child { border-bottom: none; }
+
+  .job-level-chart { margin: 24px 0; }
+  .jlc-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .jlc-level { font-family: 'IBM Plex Mono', monospace; font-size: 10px; width: 56px; color: var(--faded); }
+  .jlc-bar { height: 20px; border-radius: 2px; display: flex; align-items: center; padding: 0 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.06em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
   /* responsive */
   @media (max-width: 768px) {
     header { padding: 32px 24px 24px; }
@@ -731,7 +1000,7 @@
   <div class="header-meta">
     <div>Source: talktown-testbed</div>
     <div>github.com/james-owen-ryan</div>
-    <div style="margin-top:8px">Sections: 4</div>
+    <div style="margin-top:8px">Sections: 9</div>
     <div>Characters: simulated</div>
     <div>Years: 1839 → 1979</div>
   </div>
@@ -742,6 +1011,11 @@
   <button onclick="showSection('simulator', this)">02 — Timestep Simulator</button>
   <button onclick="showSection('routine', this)">03 — Routine Decision Tree</button>
   <button onclick="showSection('social', this)">04 — Social Probability</button>
+  <button onclick="showSection('events', this)">05 — Life Events</button>
+  <button onclick="showSection('relationships', this)">06 — Relationships</button>
+  <button onclick="showSection('beliefs', this)">07 — Beliefs &amp; Memory</button>
+  <button onclick="showSection('faces', this)">08 — Faces</button>
+  <button onclick="showSection('economy', this)">09 — Economy</button>
 </nav>
 
 <main>
@@ -1025,6 +1299,290 @@
       &nbsp;&nbsp;interlocutor.personality.extroversion +<br>
       &nbsp;&nbsp;2 if interlocutor in self.friends else 0 + ...<br>
       )
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SECTION 5: LIFE EVENTS                     -->
+  <!-- ══════════════════════════════════════════ -->
+  <section id="events" class="section">
+    <div class="section-head">
+      <div class="section-num">05</div>
+      <div>
+        <div class="section-title">Life Events &amp; Historical Record</div>
+        <div class="section-desc">The simulation's permanent ledger — every birth, marriage, hiring, and death, typed and timestamped</div>
+      </div>
+    </div>
+
+    <div class="char-thread">
+      <span class="char-thread-name">Eleanor Marsh</span>
+      <span class="char-thread-sep">—</span>
+      <span class="char-thread-context">55 years of life events already on record before the player arrives in 1979</span>
+    </div>
+
+    <p>Every occurrence in the simulation is an instance of a typed event class stored in <code>town.events_by_year</code> and on the person's own lists (<code>person.marriages</code>, <code>person.occupations</code>, <code>person.moves</code>, etc.). These events form the historical record — facts a player character might uncover through investigation.</p>
+
+    <div class="callout">
+      <strong>life_event.py — Base Event</strong><br>
+      Stores: year, month, day, ordinal_date, event_number.<br>
+      event_number enforces exact ordering within a single timestep — two events on the same morning are distinguishable. Subclasses: Birth, Marriage, Divorce, Death, Departure, Hiring, Retirement, LayOff, Move, HouseConstruction, BusinessConstruction, BusinessClosure, NameChange.
+    </div>
+
+    <div class="sim-controls">
+      <button class="btn primary" onclick="generateLife()">&#9654; Generate a Life</button>
+      <button class="btn" onclick="clearEvents()">&#8635; Clear</button>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted)" id="eventsCharName">— press Generate to simulate a life from birth to death —</div>
+    </div>
+
+    <div class="newspaper" id="eventsPaper">
+      <div class="newspaper-placeholder">
+        <div class="newspaper-ph-text">Each event type has a different typographic treatment.<br>Birth · Marriage · Divorce · Hiring · Business Opening · Retirement · Death</div>
+      </div>
+    </div>
+
+    <p>The lo-fi pass fires all life events (births, deaths, marriages, hirings) on every timestep — only the expensive routine+socialise cycle is sampled at 0.5%. This means 140 years of events are fully recorded even though most days are skipped.</p>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SECTION 6: RELATIONSHIPS                   -->
+  <!-- ══════════════════════════════════════════ -->
+  <section id="relationships" class="section">
+    <div class="section-head">
+      <div class="section-num">06</div>
+      <div>
+        <div class="section-title">Relationships &amp; Charge Accumulation</div>
+        <div class="section-desc">How personality compatibility and repeated interaction forge friendship or enmity over decades</div>
+      </div>
+    </div>
+
+    <div class="char-thread">
+      <span class="char-thread-name">Eleanor Marsh</span>
+      <span class="char-thread-sep">—</span>
+      <span class="char-thread-context">agreeableness 0.72 makes her a popular target for others' friendship charge increments</span>
+    </div>
+
+    <p>When two characters share a location, each may instigate a social interaction (Section 04). If they do, <code>progress_relationship()</code> fires: their <strong>raw_charge</strong> increments by a value determined at first meeting from personality compatibility. Each encounter adds to an accumulating score. Once charge crosses <strong>15.0</strong> they become Friends; below <strong>−10.0</strong> they become Enemies. The graph below shows six characters — click Interact to watch edges thicken and friendships emerge.</p>
+
+    <div class="sim-controls">
+      <button class="btn primary" onclick="relStep(1)">&#9654; Interact ×1</button>
+      <button class="btn" onclick="relStep(10)">&#9654;&#9654; ×10</button>
+      <button class="btn" onclick="relStep(50)">&#9654;&#9654;&#9654; ×50</button>
+      <button class="btn" onclick="relReset()">&#8635; Reset</button>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted)">
+        Total interactions: <strong id="relTotalInteractions">0</strong>
+      </div>
+    </div>
+
+    <div class="rel-layout">
+      <div class="rel-graph-wrap">
+        <svg id="relGraphSvg" viewBox="0 0 560 370" width="100%" style="display:block"></svg>
+      </div>
+      <div class="rel-panel" id="relPanel" style="color:var(--text-muted);font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:1.8">
+        Press Interact to watch relationships form.<br><br>
+        Edge thickness = charge score.<br>
+        Green = friendship (≥15).<br>
+        Red = enmity (≤−10).<br><br>
+        <span style="color:var(--rust)">Eleanor</span> (rust) has high agreeableness — she accumulates charge quickly in others.
+      </div>
+    </div>
+
+    <div class="rel-legend">
+      <div class="rel-legend-item"><div class="rel-legend-swatch" style="background:#4a8a5e;height:4px"></div>Friends (charge ≥ 15)</div>
+      <div class="rel-legend-item"><div class="rel-legend-swatch" style="background:#8e3413;height:4px"></div>Enmity (charge ≤ −10)</div>
+      <div class="rel-legend-item"><div class="rel-legend-swatch" style="background:#7a6a50;height:2px"></div>Acquaintance</div>
+    </div>
+
+    <div class="callout">
+      <strong>relationship.py — charge increment</strong><br>
+      compatibility = (3.0 − |Δopenness| − |Δextroversion| − |Δagreeableness|) / 3.0<br>
+      raw_charge_increment = compatibility + owner.ext × 0.05 + subject.agr × 0.05<br>
+      (× 0.85 if opposite sex) &nbsp;·&nbsp; friendship_threshold = 15.0 &nbsp;·&nbsp; enmity_threshold = −10.0
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SECTION 7: BELIEFS & MENTAL MODELS         -->
+  <!-- ══════════════════════════════════════════ -->
+  <section id="beliefs" class="section">
+    <div class="section-head">
+      <div class="section-num">07</div>
+      <div>
+        <div class="section-title">Beliefs &amp; Mental Models</div>
+        <div class="section-desc">What characters know, what they think they know, and how those beliefs erode between meetings</div>
+      </div>
+    </div>
+
+    <div class="char-thread">
+      <span class="char-thread-name">Eleanor Marsh</span>
+      <span class="char-thread-sep">—</span>
+      <span class="char-thread-context">Ruth's model of Eleanor is accurate today — watch what time does to it</span>
+    </div>
+
+    <p>Each character has a <strong>memory score</strong> (float, −1 to 1) that governs how well they retain beliefs about others. After directly observing someone, beliefs start near-accurate. But each year without contact, confidence in each belief facet decays — modulated by the observer's memory. Below, drag the time slider to watch Ruth's mental model of Eleanor erode. When confidence falls below 50%, a belief may drift to an incorrect value.</p>
+
+    <div class="beliefs-grid">
+      <div class="belief-panel bp-true">
+        <div class="bp-header">Eleanor's True State</div>
+        <div id="beliefTruePanel"></div>
+      </div>
+      <div class="belief-panel bp-model">
+        <div class="bp-header">Ruth's Mental Model of Eleanor</div>
+        <div id="beliefModelPanel"></div>
+      </div>
+    </div>
+
+    <div class="belief-controls">
+      <div class="islider-row">
+        <span class="islider-label">Years since last meeting</span>
+        <input type="range" min="0" max="50" value="0" id="beliefYears" oninput="updateBeliefs()">
+        <span class="islider-val" id="beliefYearsVal">0 yrs</span>
+      </div>
+      <div class="islider-row">
+        <span class="islider-label">Ruth's memory score</span>
+        <input type="range" min="10" max="95" value="70" id="ruthMemory" oninput="updateBeliefs()">
+        <span class="islider-val" id="ruthMemoryVal">0.70</span>
+      </div>
+      <button class="btn primary" onclick="beliefMeet()">&#9654; They meet again</button>
+    </div>
+
+    <div class="section-rule"></div>
+    <p><strong>Gossip propagation</strong> — beliefs also travel through the social graph. Each hop attenuates confidence and introduces a chance of distortion. Step through the chain to see how a fact about Eleanor degrades as it passes from person to person.</p>
+
+    <div class="gossip-wrap">
+      <div class="sim-controls" style="margin:0 0 16px">
+        <button class="btn primary" onclick="gossipStep()">&#9654; Spread the Word</button>
+        <button class="btn" onclick="gossipReset()">&#8635; Reset Rumor</button>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted)">Rumor: <em>"Eleanor got married"</em> (true fact, propagating)</div>
+      </div>
+      <div class="gossip-svg-container">
+        <svg id="gossipSvg" viewBox="0 0 640 160" width="100%" style="display:block;min-width:400px"></svg>
+      </div>
+      <div class="gossip-step-info" id="gossipInfo">Each hop multiplies confidence by ~0.75 and has a 15% chance of introducing distortion. Press "Spread the Word" to advance one hop.</div>
+    </div>
+
+    <div class="callout">
+      <strong>mind.py — memory inheritance</strong><br>
+      memory = normalvariate(memory_mean, memory_sd) &nbsp;·&nbsp; memory_heritability = 0.5<br>
+      Males: memory −= memory_sex_diff &nbsp;·&nbsp; capped at memory_cap, floored at memory_floor<br>
+      <strong>person.py</strong> — all_belief_facets: set of Facet objects, each with a decay_strength() method
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SECTION 8: FACES & APPEARANCE              -->
+  <!-- ══════════════════════════════════════════ -->
+  <section id="faces" class="section">
+    <div class="section-head">
+      <div class="section-num">08</div>
+      <div>
+        <div class="section-title">Procedural Faces &amp; Appearance</div>
+        <div class="section-desc">22 heritable features, probabilistic observation, and the gap between truth and belief</div>
+      </div>
+    </div>
+
+    <div class="char-thread">
+      <span class="char-thread-name">Eleanor Marsh</span>
+      <span class="char-thread-sep">—</span>
+      <span class="char-thread-context">her face attributes can be inherited by her children — and misremembered by witnesses</span>
+    </div>
+
+    <p>Every character has a <code>Face</code> object composed of 22 feature types. Each feature is a string value with a <em>variant_id</em> seed for graphical rendering and an <em>inherited_from</em> pointer if the feature was passed down. The left column shows a character's true face; the right shows what a witness believes about it after some number of meetings and elapsed time.</p>
+
+    <div class="faces-layout">
+      <div class="face-card face-true">
+        <div class="face-card-title">True Appearance</div>
+        <svg id="faceTrueSvg" viewBox="0 0 200 260" width="160" height="208" style="display:block;margin:0 auto"></svg>
+        <div class="face-attr-grid" id="faceAttrTrue"></div>
+      </div>
+      <div class="face-card face-witness">
+        <div class="face-card-title">Witness Belief</div>
+        <svg id="faceWitnessSvg" viewBox="0 0 200 260" width="160" height="208" style="display:block;margin:0 auto"></svg>
+        <div class="face-attr-grid" id="faceAttrWitness"></div>
+      </div>
+      <div class="face-controls">
+        <div class="fc-title">Controls</div>
+        <button class="btn primary" onclick="randomizeFace()" style="margin-bottom:8px">&#9654; New Face</button>
+        <button class="btn" onclick="newWitness()" style="margin-bottom:16px">&#9654; New Witness</button>
+        <div class="islider-row">
+          <span class="islider-label">Meetings</span>
+          <input type="range" min="1" max="20" value="3" id="facesMeetings" oninput="updateFaceWitness()">
+          <span class="islider-val" id="facesMeetingsVal">3</span>
+        </div>
+        <div class="islider-row">
+          <span class="islider-label">Years elapsed</span>
+          <input type="range" min="0" max="40" value="5" id="facesYears" oninput="updateFaceWitness()">
+          <span class="islider-val" id="facesYearsVal">5 yrs</span>
+        </div>
+        <div class="islider-row">
+          <span class="islider-label">Witness memory</span>
+          <input type="range" min="10" max="95" value="65" id="facesMemory" oninput="updateFaceWitness()">
+          <span class="islider-val" id="facesMemoryVal">0.65</span>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:12px;line-height:1.7">
+          <div id="facesWitnessName">Witness: A. Cooper</div>
+          <div id="facesAccuracy">Accuracy: —</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>face.py — inheritance</strong><br>
+      Each feature: heritability chance → inherit from parent or grandparent (sex-biased).<br>
+      variant_id (0–1000) seeds graphical rendering. exact_variant_inherited = True if visual details match parent exactly.<br>
+      Avoid bad inheritance: never inherit bald, gray, or white hair.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SECTION 9: OCCUPATIONS & ECONOMY           -->
+  <!-- ══════════════════════════════════════════ -->
+  <section id="economy" class="section">
+    <div class="section-head">
+      <div class="section-num">09</div>
+      <div>
+        <div class="section-title">Occupations &amp; Town Economy</div>
+        <div class="section-desc">70+ job types across 5 levels, era-aware hiring constraints, and the business lifecycle</div>
+      </div>
+    </div>
+
+    <div class="char-thread">
+      <span class="char-thread-name">Eleanor Marsh</span>
+      <span class="char-thread-sep">—</span>
+      <span class="char-thread-context">Teacher (job level 2) — her high job level boosts others' salience of her by a fixed increment</span>
+    </div>
+
+    <p>Talktown simulates an evolving town economy over 140 years. Each business has a type, owner, and set of employees across day/night shifts. Jobs are grouped into 5 levels — level determines the <em>salience boost</em> a character provides to everyone who knows them (the mayor is hard to forget). Certain occupations are era-gated: female lawyers couldn't exist before 1970, apprentices required to be male until much later.</p>
+
+    <div class="era-slider-wrap">
+      <input type="range" min="1839" max="1979" value="1939" id="eraSlider" oninput="updateEra()" style="flex:1;max-width:400px;accent-color:var(--rust)">
+      <div class="era-label" id="eraLabel">1939</div>
+    </div>
+    <div class="era-tick-row" style="max-width:404px">
+      <span>1839</span><span>1864</span><span>1889</span><span>1914</span><span>1939</span><span>1964</span><span>1979</span>
+    </div>
+
+    <div class="economy-layout">
+      <div>
+        <div class="town-ledger">
+          <div class="ledger-header">
+            <span>Business</span><span>Owner</span><span style="text-align:right">Top Level</span>
+          </div>
+          <div id="ledgerRows"></div>
+        </div>
+      </div>
+      <div class="biz-detail" id="bizDetail">
+        <div style="color:var(--text-muted);font-size:10px;font-family:'IBM Plex Mono',monospace">Select a business from the ledger to see its detail.</div>
+      </div>
+    </div>
+
+    <div class="section-rule"></div>
+    <p><strong>Job level reference</strong> — level affects relationship salience and charge/spark increments between characters of different status:</p>
+    <div class="job-level-chart" id="jobLevelChart"></div>
+
+    <div class="callout">
+      <strong>businesses_config.py — employable_as_a</strong><br>
+      Preconditions enforce historical accuracy: Cashier requires male if year &lt; 1917 · Secretary requires female · Laborer requires male · Doctor requires male if year &lt; 1966 · Lawyer requires male if year &lt; 1970.<br>
+      These constraints prevent anachronistic hires during world-generation.
     </div>
   </section>
 
@@ -1350,6 +1908,796 @@ document.getElementById('simSpeed').addEventListener('input', function() {
 });
 
 simReset();
+
+// ── SECTION 05: LIFE EVENTS ──────────────────────────────────────────
+const EVT_FIRST_M = ['William','James','Robert','Charles','Thomas','George','Henry','Edward','Arthur','Frederick'];
+const EVT_FIRST_F = ['Mary','Eleanor','Frances','Agnes','Clara','Martha','Dorothy','Helen','Edith','Ruth'];
+const EVT_LAST    = ['Marsh','Cooper','Ward','Finch','Bell','Reed','Crane','Hobbs','Voss','Oaks','Dale','Fenn'];
+const EVT_JOBS_M  = ['Farmer','Carpenter','Shopkeeper','Doctor','Blacksmith','Bartender','Teacher','Plumber','Baker','Lawyer'];
+const EVT_JOBS_F  = ['Teacher','Seamstress','Shopkeeper','Nurse','Secretary'];
+const EVT_CAUSES  = ['natural causes','illness','old age','pneumonia','heart failure'];
+const MONTHS_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_SHORT= ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function evtPick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function evtRandInt(lo,hi) { return Math.floor(Math.random()*(hi-lo+1))+lo; }
+
+function generateLife() {
+  const paper = document.getElementById('eventsPaper');
+  paper.innerHTML = '';
+  const isMale = Math.random() < 0.5;
+  const fn = isMale ? evtPick(EVT_FIRST_M) : evtPick(EVT_FIRST_F);
+  const ln = evtPick(EVT_LAST);
+  const birthYear = evtRandInt(1840, 1940);
+  const birthMonth = evtRandInt(1,12);
+  const birthDay   = evtRandInt(1,28);
+  document.getElementById('eventsCharName').textContent =
+    `${fn} ${ln} · b. ${MONTHS_SHORT[birthMonth-1]} ${birthDay}, ${birthYear}`;
+
+  const events = [];
+
+  // Birth
+  events.push({ type:'birth', year:birthYear, month:birthMonth, day:birthDay,
+    data:{ name:`${fn} ${ln}`,
+           parents:`${evtPick(EVT_FIRST_M)} & ${evtPick(EVT_FIRST_F)} ${ln}` }});
+
+  // Hiring (~age 18–22)
+  const workYear = birthYear + evtRandInt(17,22);
+  const job = evtPick(isMale ? EVT_JOBS_M : EVT_JOBS_F);
+  const employer = `${evtPick(EVT_LAST)}'s ${job==='Farmer'?'Farm':job==='Doctor'?'Practice':job+' Shop'}`;
+  events.push({ type:'hiring', year:workYear,
+    data:{ name:`${fn} ${ln}`, job, employer }});
+
+  // Marriage (~age 22–30)
+  let spouseName = null, marriageYear = null;
+  if (Math.random() < 0.82) {
+    marriageYear = workYear + evtRandInt(1,8);
+    const sf = isMale ? evtPick(EVT_FIRST_F) : evtPick(EVT_FIRST_M);
+    const sl = evtPick(EVT_LAST);
+    spouseName = `${sf} ${sl}`;
+    events.push({ type:'marriage', year:marriageYear,
+      data:{ p1:`${fn} ${ln}`, p2:spouseName }});
+
+    // Possible divorce
+    if (Math.random() < 0.12) {
+      const divYear = marriageYear + evtRandInt(3,15);
+      if (divYear < birthYear+60) {
+        events.push({ type:'divorce', year:divYear,
+          data:{ p1:`${fn} ${ln}`, p2:spouseName }});
+        spouseName = null;
+      }
+    }
+
+    // Children
+    const numKids = evtRandInt(0,5);
+    for (let i=0; i<numKids; i++) {
+      const kidYear = marriageYear + evtRandInt(1,3) + i*evtRandInt(1,3);
+      if (kidYear > birthYear+48) break;
+      const km = Math.random()<0.5;
+      const kidFirst = evtPick(km ? EVT_FIRST_M : EVT_FIRST_F);
+      const kidLast  = isMale ? ln : (spouseName ? spouseName.split(' ')[1] : ln);
+      events.push({ type:'birth', year:kidYear, month:evtRandInt(1,12), day:evtRandInt(1,28),
+        data:{ name:`${kidFirst} ${kidLast}`,
+               parents:`${fn} & ${spouseName ? spouseName.split(' ')[0] : '?'} ${kidLast}` }});
+    }
+  }
+
+  // Business opening (30% chance)
+  if (Math.random()<0.3 && workYear+8 < birthYear+65) {
+    const bizYear = workYear + evtRandInt(5,14);
+    events.push({ type:'business', year:bizYear,
+      data:{ name:`${ln}'s ${job==='Farmer'?'Farm Supply':job+' Shop'}`, owner:`${fn} ${ln}` }});
+  }
+
+  // Retirement (~age 62–70)
+  const retireYear = birthYear + evtRandInt(60,72);
+  if (retireYear > workYear) {
+    events.push({ type:'retirement', year:retireYear,
+      data:{ name:`${fn} ${ln}`, job, years: retireYear - workYear }});
+  }
+
+  // Spouse death (if still married)
+  if (spouseName && Math.random()<0.55) {
+    const sdYear = (marriageYear||workYear) + evtRandInt(20,55);
+    if (sdYear < birthYear+85) {
+      events.push({ type:'death', year:sdYear,
+        data:{ name:spouseName, cause:evtPick(EVT_CAUSES) }});
+    }
+  }
+
+  // Death
+  const deathYear = birthYear + evtRandInt(65,92);
+  events.push({ type:'death', year:deathYear,
+    data:{ name:`${fn} ${ln}`, cause:evtPick(EVT_CAUSES) }});
+
+  events.sort((a,b) => a.year - b.year || (a.month||0)-(b.month||0) || (a.day||0)-(b.day||0));
+
+  events.forEach((evt, i) => {
+    setTimeout(() => renderEvent(paper, evt), i * 120);
+  });
+}
+
+function renderEvent(container, evt) {
+  const div = document.createElement('div');
+  div.className = 'event-item';
+  div.style.animation = 'fadeIn 0.35s ease';
+  const y = evt.year;
+  const mStr = evt.month ? `${MONTHS_SHORT[evt.month-1]} ${evt.day ? evt.day+', ' : ''}${y}` : String(y);
+
+  switch(evt.type) {
+    case 'birth':
+      div.innerHTML = `<div class="evt-birth">
+        <div class="evt-type-label">Vital Record — Birth</div>
+        <div class="evt-birth-name">${evt.data.name}</div>
+        <div class="evt-birth-detail">${mStr} &nbsp;·&nbsp; Parents: ${evt.data.parents}</div></div>`;
+      break;
+    case 'death':
+      div.innerHTML = `<div class="evt-death">
+        <div class="evt-type-label">In Memoriam</div>
+        <div class="evt-death-name">${evt.data.name}</div>
+        <div class="evt-death-detail">${y} &nbsp;·&nbsp; ${evt.data.cause}</div></div>`;
+      break;
+    case 'marriage':
+      div.innerHTML = `<div class="evt-marriage">
+        <div class="evt-type-label">Marriage Announced</div>
+        <div class="evt-marriage-names">${evt.data.p1} <span style="color:var(--rust)">&#10005;</span> ${evt.data.p2}</div>
+        <div class="evt-marriage-detail">${y}</div></div>`;
+      break;
+    case 'divorce':
+      div.innerHTML = `<div style="padding:8px 0;border-bottom:1px dotted var(--aged)">
+        <div class="evt-type-label">Dissolution of Marriage</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);font-style:italic">
+          ${evt.data.p1} &amp; ${evt.data.p2} · ${y}</div></div>`;
+      break;
+    case 'hiring':
+      div.innerHTML = `<div class="evt-hiring">
+        <div class="evt-type-label">Employment Record</div>
+        ${evt.data.name} — <strong>${evt.data.job}</strong> at ${evt.data.employer} &nbsp;·&nbsp; ${y}</div>`;
+      break;
+    case 'business':
+      div.innerHTML = `<div class="evt-business">
+        <div class="evt-type-label">Now Open</div>
+        <div class="evt-business-name">${evt.data.name}</div>
+        <div class="evt-business-detail">Proprietor: ${evt.data.owner} &nbsp;·&nbsp; Est. ${y}</div></div>`;
+      break;
+    case 'retirement':
+      div.innerHTML = `<div class="evt-retirement">
+        <div class="evt-type-label">Retirement</div>
+        ${evt.data.name} retires after ${evt.data.years} yrs as ${evt.data.job} · ${y}</div>`;
+      break;
+  }
+  container.appendChild(div);
+}
+
+function clearEvents() {
+  document.getElementById('eventsPaper').innerHTML =
+    '<div class="newspaper-placeholder"><div class="newspaper-ph-text">Press Generate to simulate a life from birth to death</div></div>';
+  document.getElementById('eventsCharName').textContent = '— press Generate to simulate a life from birth to death —';
+}
+
+// ── SECTION 06: RELATIONSHIPS ─────────────────────────────────────────
+const RC = [
+  { id:0, name:'Eleanor', initials:'El', ext:0.65, agr:0.72, open:0.58, male:false, x:200, y:190 },
+  { id:1, name:'Ruth',    initials:'Ru', ext:0.48, agr:0.55, open:0.62, male:false, x:360, y:100 },
+  { id:2, name:'George',  initials:'Ge', ext:0.30, agr:0.40, open:0.35, male:true,  x:460, y:220 },
+  { id:3, name:'Thomas',  initials:'Th', ext:0.70, agr:0.80, open:0.72, male:true,  x:370, y:310 },
+  { id:4, name:'Agnes',   initials:'Ag', ext:0.55, agr:0.65, open:0.60, male:false, x:120, y:300 },
+  { id:5, name:'Peter',   initials:'Pe', ext:0.25, agr:0.30, open:0.28, male:true,  x:80,  y:130 },
+];
+
+function relCompat(a, b) {
+  const d = Math.abs(a.open-b.open) + Math.abs(a.ext-b.ext) + Math.abs(a.agr-b.agr);
+  return (3.0 - d) / 3.0;
+}
+function relChgInc(a, b) {
+  let inc = relCompat(a,b) + a.ext*0.05 + b.agr*0.05;
+  if (a.male !== b.male) inc *= 0.85;
+  return inc;
+}
+function relKey(i,j) { return Math.min(i,j)+'-'+Math.max(i,j); }
+function relTypeOf(c) {
+  if (c >= 20) return { label:'Best Friends', color:'#2a6e3e' };
+  if (c >= 15) return { label:'Friends',      color:'#4a8a5e' };
+  if (c > -10) return { label:'Acquaintances',color:'#7a6a50' };
+  return { label:'Enmity', color:'#8e3413' };
+}
+
+let relEdges = {}, relTotal = 0, relLastKey = null;
+
+function relStep(n) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const pairs = [];
+  for (let a=0; a<RC.length; a++) for (let b=a+1; b<RC.length; b++) {
+    const dx=RC[a].x-RC[b].x, dy=RC[a].y-RC[b].y;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    pairs.push({ a, b, w: dist<200?3:dist<320?2:1 });
+  }
+  const tw = pairs.reduce((s,p)=>s+p.w,0);
+  for (let i=0;i<n;i++) {
+    let r=Math.random()*tw, chosen=pairs[pairs.length-1];
+    for(const p of pairs){r-=p.w; if(r<=0){chosen=p;break;}}
+    const key=relKey(chosen.a,chosen.b);
+    if (!relEdges[key]) relEdges[key]={a:chosen.a,b:chosen.b,ca:0,cb:0,n:0};
+    const e=relEdges[key];
+    e.ca += relChgInc(RC[chosen.a],RC[chosen.b]);
+    e.cb += relChgInc(RC[chosen.b],RC[chosen.a]);
+    e.n++; relTotal++; relLastKey=key;
+  }
+  relRender();
+}
+
+function relRender() {
+  const svg = document.getElementById('relGraphSvg');
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  svg.innerHTML = '';
+
+  // Draw edges
+  for (const [key, e] of Object.entries(relEdges)) {
+    const ca=RC[e.a], cb=RC[e.b];
+    const avg=(e.ca+e.cb)/2;
+    const rt=relTypeOf(avg);
+    const sw=Math.max(1, Math.min(8, Math.abs(avg)/3));
+    const isSel = key===relLastKey;
+    const line = document.createElementNS(ns,'line');
+    line.setAttribute('x1',ca.x); line.setAttribute('y1',ca.y);
+    line.setAttribute('x2',cb.x); line.setAttribute('y2',cb.y);
+    line.setAttribute('stroke',rt.color);
+    line.setAttribute('stroke-width', isSel?sw+2:sw);
+    line.setAttribute('opacity', isSel?'1':'0.7');
+    svg.appendChild(line);
+    if (isSel) {
+      const mx=(ca.x+cb.x)/2, my=(ca.y+cb.y)/2;
+      const rect=document.createElementNS(ns,'rect');
+      rect.setAttribute('x',mx-22); rect.setAttribute('y',my-9);
+      rect.setAttribute('width',44); rect.setAttribute('height',16);
+      rect.setAttribute('fill','var(--paper)'); rect.setAttribute('rx','2');
+      svg.appendChild(rect);
+      const txt=document.createElementNS(ns,'text');
+      txt.setAttribute('x',mx); txt.setAttribute('y',my+3);
+      txt.setAttribute('text-anchor','middle');
+      txt.setAttribute('font-family','IBM Plex Mono'); txt.setAttribute('font-size','9');
+      txt.setAttribute('fill',rt.color); txt.setAttribute('font-weight','500');
+      txt.textContent = avg.toFixed(1);
+      svg.appendChild(txt);
+    }
+  }
+
+  // Draw nodes
+  RC.forEach(ch => {
+    const isEleanor = ch.id===0;
+    const g=document.createElementNS(ns,'g');
+    const circ=document.createElementNS(ns,'circle');
+    circ.setAttribute('cx',ch.x); circ.setAttribute('cy',ch.y); circ.setAttribute('r',22);
+    circ.setAttribute('fill', isEleanor?'var(--rust)':'var(--slate)');
+    circ.setAttribute('stroke','var(--paper)'); circ.setAttribute('stroke-width','2');
+    g.appendChild(circ);
+    const lbl=document.createElementNS(ns,'text');
+    lbl.setAttribute('x',ch.x); lbl.setAttribute('y',ch.y+4);
+    lbl.setAttribute('text-anchor','middle');
+    lbl.setAttribute('font-family','IBM Plex Mono'); lbl.setAttribute('font-size','10');
+    lbl.setAttribute('fill','#ffffff'); lbl.setAttribute('font-weight','500');
+    lbl.textContent=ch.initials;
+    g.appendChild(lbl);
+    const nm=document.createElementNS(ns,'text');
+    nm.setAttribute('x',ch.x); nm.setAttribute('y',ch.y+34);
+    nm.setAttribute('text-anchor','middle');
+    nm.setAttribute('font-family','IBM Plex Mono'); nm.setAttribute('font-size','9');
+    nm.setAttribute('fill','var(--text-muted)');
+    nm.textContent=ch.name;
+    g.appendChild(nm);
+    svg.appendChild(g);
+  });
+
+  document.getElementById('relTotalInteractions').textContent = relTotal;
+  updateRelPanel();
+}
+
+function updateRelPanel() {
+  const panel = document.getElementById('relPanel');
+  if (!relLastKey || !relEdges[relLastKey]) {
+    panel.innerHTML = `<span style="color:var(--text-muted)">Press Interact to watch relationships form.<br><br>Edge thickness = charge score.<br>Green = friendship (≥15).<br>Red = enmity (≤−10).<br><br><span style="color:var(--rust)">Eleanor</span> (rust) has high agreeableness — she accumulates charge quickly in others.</span>`;
+    return;
+  }
+  const e=relEdges[relLastKey];
+  const ca=RC[e.a], cb=RC[e.b];
+  const avg=(e.ca+e.cb)/2;
+  const rt=relTypeOf(avg);
+  const comp=relCompat(ca,cb);
+  panel.innerHTML = `
+    <div class="rel-pair-title">${ca.name} &amp; ${cb.name}</div>
+    <div class="rel-stat-row"><span>Interactions</span><span>${e.n}</span></div>
+    <div class="rel-stat-row"><span>Charge (avg)</span><span style="color:${rt.color}">${avg.toFixed(1)}</span></div>
+    <div class="rel-stat-row"><span>Status</span><span style="color:${rt.color}">${rt.label}</span></div>
+    <div style="height:1px;background:var(--aged);margin:10px 0"></div>
+    <div class="rel-stat-row"><span>Compatibility</span><span>${comp.toFixed(3)}</span></div>
+    <div class="rel-stat-row"><span>${ca.name}→${cb.name} inc</span><span>${relChgInc(ca,cb).toFixed(3)}</span></div>
+    <div class="rel-stat-row"><span>${cb.name}→${ca.name} inc</span><span>${relChgInc(cb,ca).toFixed(3)}</span></div>
+    <div style="height:1px;background:var(--aged);margin:10px 0"></div>
+    <div style="font-size:9px;color:var(--faded)">friendship ≥ 15.0 &nbsp;·&nbsp; enmity ≤ −10.0</div>
+    ${avg>=15?'<div class="rel-badge bestfriends">★ Friends</div>':''}
+    ${avg<-10?'<div class="rel-badge enemies">✗ Enmity</div>':''}
+  `;
+}
+
+function relReset() {
+  relEdges={}; relTotal=0; relLastKey=null; relRender();
+}
+
+relRender();
+
+// ── SECTION 07: BELIEFS ───────────────────────────────────────────────
+const BELIEF_ATTRS = [
+  { key:'hair color',    true:'brown',        alts:['black','blonde','gray','red'] },
+  { key:'eye color',     true:'blue',         alts:['brown','green','hazel','gray'] },
+  { key:'occupation',    true:'Teacher',      alts:['retired','Seamstress','Shopkeeper'] },
+  { key:'marital status',true:'Married',      alts:['widowed','divorced','unknown'] },
+  { key:'home address',  true:'14 Elm St.',   alts:['unknown','moved','23 Oak Ave'] },
+  { key:'hair length',   true:'medium',       alts:['short','long','unknown'] },
+];
+
+let beliefMet = false;
+
+function beliefConfColor(c) {
+  if (c >= 0.75) return 'var(--moss)';
+  if (c >= 0.50) return 'var(--gold)';
+  return 'var(--rust)';
+}
+
+function updateBeliefs() {
+  const years  = parseInt(document.getElementById('beliefYears').value);
+  const memory = parseInt(document.getElementById('ruthMemory').value) / 100;
+  document.getElementById('beliefYearsVal').textContent = years + ' yrs';
+  document.getElementById('ruthMemoryVal').textContent  = memory.toFixed(2);
+
+  // Confidence model: base × decay^years, where decay depends on memory
+  const decayRate = (1 - memory) * 0.07;   // 0→fast decay, 1→no decay
+  const baseConf  = 0.88 + memory * 0.07;  // memory improves initial accuracy
+
+  const truePanel  = document.getElementById('beliefTruePanel');
+  const modelPanel = document.getElementById('beliefModelPanel');
+  truePanel.innerHTML = '';
+  modelPanel.innerHTML = '';
+
+  BELIEF_ATTRS.forEach(attr => {
+    // True panel
+    const tr = document.createElement('div');
+    tr.className = 'belief-attr';
+    tr.innerHTML = `<span class="belief-attr-key">${attr.key}</span><span class="belief-attr-val">${attr.true}</span>`;
+    truePanel.appendChild(tr);
+
+    // Model panel
+    const conf = Math.max(0.02, baseConf * Math.pow(1-decayRate, years));
+    const isWrong = conf < 0.40 && Math.random() < (0.55 - conf); // drifts when uncertain
+    const displayVal = isWrong ? attr.alts[Math.floor(Math.random()*attr.alts.length)] : attr.true;
+    const pct = Math.round(conf * 100);
+    const mr = document.createElement('div');
+    mr.className = 'belief-attr';
+    mr.innerHTML = `
+      <span class="belief-attr-key">${attr.key}</span>
+      <span class="belief-attr-val ${isWrong?'wrong':conf<0.5?'uncertain':''}">${displayVal}${isWrong?' ?':''}</span>
+      <div class="belief-conf-track">
+        <div class="belief-conf-fill" style="width:${pct}%;background:${beliefConfColor(conf)}"></div>
+      </div>
+      <span class="belief-conf-pct">${pct}%</span>
+    `;
+    modelPanel.appendChild(mr);
+  });
+}
+
+function beliefMeet() {
+  document.getElementById('beliefYears').value = 0;
+  updateBeliefs();
+}
+
+updateBeliefs();
+
+// ── SECTION 07: GOSSIP ────────────────────────────────────────────────
+const GOSSIP_NODES = [
+  { id:0, name:'Eleanor', x:40,  y:80, source:true },
+  { id:1, name:'Ruth',    x:160, y:80 },
+  { id:2, name:'Agnes',   x:280, y:80 },
+  { id:3, name:'Thomas',  x:400, y:80 },
+  { id:4, name:'George',  x:520, y:80 },
+];
+// Belief: confidence (0-1) + possible distortion
+const GOSSIP_TRUTH = 'married Robert Finch in 1946';
+const GOSSIP_DISTORTIONS = [
+  'married a man named Robert',
+  'married someone in the 1940s',
+  'had a romantic partner named Robert',
+  'was once engaged',
+];
+
+let gossipState = [
+  { conf:1.00, text:GOSSIP_TRUTH, distorted:false },
+  null, null, null, null,
+];
+let gossipHop = 0;
+
+function gossipStep() {
+  if (gossipHop >= GOSSIP_NODES.length-1) return;
+  gossipHop++;
+  const prev = gossipState[gossipHop-1];
+  const conf = prev.conf * (0.70 + Math.random()*0.15); // 0.70–0.85 factor per hop
+  const distorted = prev.distorted || Math.random() < 0.18;
+  const text = distorted
+    ? GOSSIP_DISTORTIONS[Math.min(gossipHop-1, GOSSIP_DISTORTIONS.length-1)]
+    : prev.text;
+  gossipState[gossipHop] = { conf, text, distorted };
+  renderGossip();
+  const info = document.getElementById('gossipInfo');
+  const hop = GOSSIP_NODES[gossipHop];
+  const pct = Math.round(conf*100);
+  info.innerHTML = `<strong>${GOSSIP_NODES[gossipHop-1].name} → ${hop.name}</strong>: confidence ${pct}% ·
+    ${distorted ? '<span style="color:var(--rust)">distortion introduced</span>' : '<span style="color:var(--moss)">still accurate</span>'}<br>
+    <em>"Eleanor ${text}"</em>`;
+}
+
+function gossipReset() {
+  gossipHop=0;
+  gossipState=[{conf:1.00,text:GOSSIP_TRUTH,distorted:false},null,null,null,null];
+  renderGossip();
+  document.getElementById('gossipInfo').textContent =
+    'Each hop multiplies confidence by ~0.75 and has a 15% chance of introducing distortion. Press "Spread the Word" to advance one hop.';
+}
+
+function renderGossip() {
+  const svg = document.getElementById('gossipSvg');
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  svg.innerHTML = '';
+
+  // Arrows between known nodes
+  for (let i=0; i<gossipHop; i++) {
+    const a=GOSSIP_NODES[i], b=GOSSIP_NODES[i+1];
+    const line=document.createElementNS(ns,'line');
+    line.setAttribute('x1',a.x+26); line.setAttribute('y1',a.y);
+    line.setAttribute('x2',b.x-26); line.setAttribute('y2',b.y);
+    const gs=gossipState[i+1];
+    const col = gs&&gs.distorted ? '#b5451b' : '#4a6741';
+    line.setAttribute('stroke',col); line.setAttribute('stroke-width','2');
+    svg.appendChild(line);
+    // Arrowhead
+    const ah=document.createElementNS(ns,'polygon');
+    const ax=b.x-28, ay=b.y;
+    ah.setAttribute('points',`${ax},${ay-4} ${ax+8},${ay} ${ax},${ay+4}`);
+    ah.setAttribute('fill',col);
+    svg.appendChild(ah);
+  }
+
+  // Nodes
+  GOSSIP_NODES.forEach((nd,i) => {
+    const gs = gossipState[i];
+    const active = gs !== null;
+    const col = nd.source ? 'var(--rust)' : active ? 'var(--slate)' : 'var(--aged)';
+    const g=document.createElementNS(ns,'g');
+    const circ=document.createElementNS(ns,'circle');
+    circ.setAttribute('cx',nd.x); circ.setAttribute('cy',nd.y); circ.setAttribute('r',24);
+    circ.setAttribute('fill',col); circ.setAttribute('stroke','var(--paper)'); circ.setAttribute('stroke-width','2');
+    g.appendChild(circ);
+    // Name
+    const nm=document.createElementNS(ns,'text');
+    nm.setAttribute('x',nd.x); nm.setAttribute('y',nd.y+38);
+    nm.setAttribute('text-anchor','middle');
+    nm.setAttribute('font-family','IBM Plex Mono'); nm.setAttribute('font-size','9');
+    nm.setAttribute('fill','var(--text-muted)');
+    nm.textContent=nd.name;
+    g.appendChild(nm);
+    if (active) {
+      const conf=Math.round(gs.conf*100);
+      // Confidence %
+      const ct=document.createElementNS(ns,'text');
+      ct.setAttribute('x',nd.x); ct.setAttribute('y',nd.y+5);
+      ct.setAttribute('text-anchor','middle');
+      ct.setAttribute('font-family','IBM Plex Mono'); ct.setAttribute('font-size','10');
+      ct.setAttribute('fill','#ffffff'); ct.setAttribute('font-weight','500');
+      ct.textContent=conf+'%';
+      g.appendChild(ct);
+      // Distortion indicator
+      if (gs.distorted) {
+        const dt=document.createElementNS(ns,'text');
+        dt.setAttribute('x',nd.x+18); dt.setAttribute('y',nd.y-16);
+        dt.setAttribute('font-size','12'); dt.setAttribute('fill','var(--rust)');
+        dt.textContent='!';
+        g.appendChild(dt);
+      }
+    } else {
+      const qt=document.createElementNS(ns,'text');
+      qt.setAttribute('x',nd.x); qt.setAttribute('y',nd.y+5);
+      qt.setAttribute('text-anchor','middle');
+      qt.setAttribute('font-family','IBM Plex Mono'); qt.setAttribute('font-size','12');
+      qt.setAttribute('fill','var(--faded)');
+      qt.textContent='?';
+      g.appendChild(qt);
+    }
+    svg.appendChild(g);
+  });
+}
+
+gossipReset();
+
+// ── SECTION 08: FACES ────────────────────────────────────────────────
+const HAIR_COLORS = { black:'#1a1a1a', brown:'#6b3a2a', blonde:'#e8c87a', red:'#9e3520', gray:'#8a8a8a', white:'#e8e8e8' };
+const EYE_COLORS  = { blue:'#3a6cc8', brown:'#6b4223', green:'#3a7a3a', hazel:'#8b7355', gray:'#708090' };
+const SKIN_TONES  = { black:'#5c3d2e', brown:'#a0785a', beige:'#e8c9a0', pink:'#f5c8b0', white:'#f8e8d8' };
+const HAIR_COLOR_OPTS = ['black','brown','blonde','red'];
+const EYE_COLOR_OPTS  = ['blue','brown','green','hazel'];
+const SKIN_OPTS       = ['beige','pink','white','brown'];
+const NOSE_OPTS       = ['small','medium','large'];
+const MOUTH_OPTS      = ['small','medium','large'];
+const HAIR_LEN_OPTS   = ['short','medium','long'];
+
+const WITNESS_NAMES = ['R. Cooper','T. Ward','G. Hobbs','A. Reed','P. Oaks','C. Voss'];
+
+let currentFace = null;
+let currentWitnessName = 'R. Cooper';
+let witnessMemoryScore = 0.65;
+
+function randomizeFace() {
+  currentFace = {
+    skin:     SKIN_OPTS[Math.floor(Math.random()*SKIN_OPTS.length)],
+    hair:     HAIR_COLOR_OPTS[Math.floor(Math.random()*HAIR_COLOR_OPTS.length)],
+    hair_len: HAIR_LEN_OPTS[Math.floor(Math.random()*HAIR_LEN_OPTS.length)],
+    eyes:     EYE_COLOR_OPTS[Math.floor(Math.random()*EYE_COLOR_OPTS.length)],
+    nose:     NOSE_OPTS[Math.floor(Math.random()*NOSE_OPTS.length)],
+    mouth:    MOUTH_OPTS[Math.floor(Math.random()*MOUTH_OPTS.length)],
+    glasses:  Math.random()<0.2,
+    freckles: Math.random()<0.15,
+  };
+  renderFaceSvg('faceTrueSvg', currentFace, 1.0, false);
+  renderFaceAttrs('faceAttrTrue', currentFace, null, 1.0);
+  updateFaceWitness();
+}
+
+function newWitness() {
+  currentWitnessName = WITNESS_NAMES[Math.floor(Math.random()*WITNESS_NAMES.length)];
+  updateFaceWitness();
+}
+
+function updateFaceWitness() {
+  if (!currentFace) return;
+  const meetings = parseInt(document.getElementById('facesMeetings').value);
+  const years    = parseInt(document.getElementById('facesYears').value);
+  const memory   = parseInt(document.getElementById('facesMemory').value)/100;
+  document.getElementById('facesMeetingsVal').textContent = meetings;
+  document.getElementById('facesYearsVal').textContent = years+' yrs';
+  document.getElementById('facesMemoryVal').textContent = memory.toFixed(2);
+  document.getElementById('facesWitnessName').textContent = 'Witness: ' + currentWitnessName;
+
+  // Compute confidence per attribute
+  const meetingBoost = Math.min(0.92, 0.45 + meetings * 0.05);
+  const decayRate    = (1-memory)*0.06;
+  const conf         = Math.max(0.03, meetingBoost * Math.pow(1-decayRate, years));
+
+  // Build witness's belief (possibly drifted)
+  const witnessFace = {};
+  const ALTS = {
+    hair:     HAIR_COLOR_OPTS,
+    eyes:     EYE_COLOR_OPTS,
+    skin:     SKIN_OPTS,
+    nose:     NOSE_OPTS,
+    mouth:    MOUTH_OPTS,
+    hair_len: HAIR_LEN_OPTS,
+    glasses:  [true,false],
+    freckles: [true,false],
+  };
+  let wrongCount = 0;
+  for (const key of Object.keys(currentFace)) {
+    const c = key==='glasses'||key==='freckles' ? conf*0.7 : conf;
+    if (c < 0.45 && Math.random()<(0.6-c)) {
+      const alts = ALTS[key].filter(v => v!==currentFace[key]);
+      witnessFace[key] = alts[Math.floor(Math.random()*alts.length)];
+      wrongCount++;
+    } else {
+      witnessFace[key] = currentFace[key];
+    }
+  }
+  const accuracy = Math.round((1 - wrongCount/Object.keys(currentFace).length)*100);
+  document.getElementById('facesAccuracy').textContent = 'Accuracy: ~'+accuracy+'%';
+
+  renderFaceSvg('faceWitnessSvg', witnessFace, conf, true);
+  renderFaceAttrs('faceAttrWitness', witnessFace, currentFace, conf);
+}
+
+function renderFaceSvg(svgId, attrs, alpha, isWitness) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  svg.innerHTML = '';
+  const op = Math.max(0.3, alpha).toFixed(2);
+  const skinCol  = SKIN_TONES[attrs.skin]  || '#f8e8d8';
+  const hairCol  = HAIR_COLORS[attrs.hair] || '#6b3a2a';
+  const eyeCol   = EYE_COLORS[attrs.eyes]  || '#3a6cc8';
+  function el(tag, a) { const e=document.createElementNS(ns,tag); Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v)); return e; }
+
+  // Hair (behind head)
+  if (attrs.hair_len !== 'bald') {
+    const ry = attrs.hair_len==='long'?72:attrs.hair_len==='medium'?65:55;
+    svg.appendChild(el('ellipse',{cx:100,cy:50,rx:76,ry,fill:hairCol,opacity:op}));
+    if (attrs.hair_len!=='short') {
+      svg.appendChild(el('ellipse',{cx:22,cy:140,rx:16,ry:40,fill:hairCol,opacity:op}));
+      svg.appendChild(el('ellipse',{cx:178,cy:140,rx:16,ry:40,fill:hairCol,opacity:op}));
+    }
+    if (attrs.hair_len==='long') {
+      svg.appendChild(el('rect',{x:16,y:180,width:168,height:72,fill:hairCol,opacity:op,rx:16}));
+    }
+  }
+  // Head
+  svg.appendChild(el('ellipse',{cx:100,cy:140,rx:78,ry:90,fill:skinCol,stroke:'#c8a888','stroke-width':1.5,opacity:op}));
+  // Ears
+  svg.appendChild(el('ellipse',{cx:22,cy:142,rx:10,ry:16,fill:skinCol,stroke:'#c8a888','stroke-width':1,opacity:op}));
+  svg.appendChild(el('ellipse',{cx:178,cy:142,rx:10,ry:16,fill:skinCol,stroke:'#c8a888','stroke-width':1,opacity:op}));
+  // Eyebrows
+  svg.appendChild(el('path',{d:'M 62 97 Q 70 94 78 97',stroke:hairCol,'stroke-width':2.5,fill:'none',opacity:op}));
+  svg.appendChild(el('path',{d:'M 122 97 Q 130 94 138 97',stroke:hairCol,'stroke-width':2.5,fill:'none',opacity:op}));
+  // Eyes
+  const eRx={small:11,medium:14,large:17}[attrs.eye_size||'medium']||13;
+  [[70,112],[130,112]].forEach(([cx,cy]) => {
+    svg.appendChild(el('ellipse',{cx,cy,rx:eRx,ry:eRx*0.65,fill:'white',stroke:'#2a1a0a','stroke-width':1,opacity:op}));
+    svg.appendChild(el('circle',{cx,cy,r:eRx*0.55,fill:eyeCol,opacity:op}));
+    svg.appendChild(el('circle',{cx,cy,r:eRx*0.28,fill:'#0a0a0a',opacity:op}));
+  });
+  // Nose
+  svg.appendChild(el('path',{d:'M 100 132 L 94 155 M 94 155 Q 100 159 106 155 M 106 155 L 100 132',
+    stroke:'#c8a888','stroke-width':1.5,fill:'none',opacity:op}));
+  // Mouth
+  const mw={small:18,medium:26,large:33}[attrs.mouth]||26;
+  svg.appendChild(el('path',{d:`M ${100-mw} 175 Q 100 185 ${100+mw} 175`,
+    stroke:'#a06050','stroke-width':2,fill:'none',opacity:op}));
+  svg.appendChild(el('path',{d:`M ${100-mw} 175 Q 100 178 ${100+mw} 175`,
+    stroke:'#c07868','stroke-width':1,fill:'none',opacity:op}));
+  // Glasses
+  if (attrs.glasses) {
+    svg.appendChild(el('circle',{cx:70,cy:112,r:eRx+5,fill:'none',stroke:'#3a3028','stroke-width':2,opacity:op}));
+    svg.appendChild(el('circle',{cx:130,cy:112,r:eRx+5,fill:'none',stroke:'#3a3028','stroke-width':2,opacity:op}));
+    svg.appendChild(el('line',{x1:70+(eRx+5),y1:112,x2:130-(eRx+5),y2:112,stroke:'#3a3028','stroke-width':2,opacity:op}));
+  }
+  // Freckles
+  if (attrs.freckles) {
+    [[87,132],[93,137],[107,132],[113,137],[100,130]].forEach(([fx,fy]) => {
+      svg.appendChild(el('circle',{cx:fx,cy:fy,r:2,fill:'#b08060',opacity:(parseFloat(op)*0.6).toFixed(2)}));
+    });
+  }
+  // Belief uncertainty overlay
+  if (isWitness && alpha < 0.85) {
+    const ov=el('rect',{x:0,y:0,width:200,height:260,
+      fill:'var(--paper)',opacity:(Math.max(0,(0.85-alpha)*0.5)).toFixed(2)});
+    svg.appendChild(ov);
+    if (alpha < 0.45) {
+      const qt=el('text',{x:100,y:138,'text-anchor':'middle',
+        'font-family':'IBM Plex Mono','font-size':'14','fill':'var(--faded)','opacity':'0.6'});
+      qt.textContent='memory faded';
+      svg.appendChild(qt);
+    }
+  }
+}
+
+function renderFaceAttrs(elId, face, truthFace, conf) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const attrs = [
+    ['hair',    face.hair],
+    ['eyes',    face.eyes],
+    ['hair len',face.hair_len],
+    ['nose',    face.nose],
+    ['mouth',   face.mouth],
+    ['glasses', face.glasses?'yes':'no'],
+    ['freckles',face.freckles?'yes':'no'],
+  ];
+  el.innerHTML = attrs.map(([k,v]) => {
+    const isDrifted = truthFace && v !== truthFace[k] &&
+      !(k==='glasses'&&v==='no'&&!truthFace.glasses) &&
+      !(k==='freckles'&&v==='no'&&!truthFace.freckles);
+    const pct = conf !== null ? Math.round(Math.min(1,conf+(k==='hair'||k==='eyes'?0.05:0))*100) : null;
+    return `<div class="face-attr-row">
+      <span class="fa-key">${k}</span>
+      <span class="fa-val${isDrifted?' drifted':''}">${v}</span>
+      ${pct!==null?`<span class="fa-conf">${pct}%</span>`:''}
+    </div>`;
+  }).join('');
+}
+
+// Initialize faces with Eleanor's canonical face
+(function initFaces() {
+  currentFace = {
+    skin:'pink', hair:'brown', hair_len:'medium', eyes:'blue',
+    nose:'small', mouth:'medium', glasses:false, freckles:false,
+  };
+  renderFaceSvg('faceTrueSvg', currentFace, 1.0, false);
+  renderFaceAttrs('faceAttrTrue', currentFace, null, null);
+  updateFaceWitness();
+})();
+
+// ── SECTION 09: ECONOMY ───────────────────────────────────────────────
+const ERA_BUSINESSES = [
+  { name:"Marsh Farm",                owner:"W. Marsh",    level:2, jobs:[{t:"Farmer",l:2},{t:"Farmhand",l:1}],   openYear:1839, closeYear:null },
+  { name:"Bell Blacksmith Shop",       owner:"T. Bell",     level:2, jobs:[{t:"Blacksmith",l:2},{t:"Apprentice",l:1}], openYear:1839, closeYear:1950 },
+  { name:"Ward General Store",         owner:"A. Ward",     level:2, jobs:[{t:"Proprietor",l:2},{t:"Cashier",l:1},{t:"Stocker",l:1}], openYear:1839, closeYear:null },
+  { name:"Cooper Carpentry",           owner:"G. Cooper",   level:2, jobs:[{t:"Carpenter",l:2},{t:"Apprentice",l:1}], openYear:1845, closeYear:1920 },
+  { name:"Millhaven Schoolhouse",      owner:"(Town)",      level:2, jobs:[{t:"Teacher",l:2},{t:"Principal",l:3}], openYear:1858, closeYear:null },
+  { name:"Finch Medical Practice",     owner:"R. Finch",    level:4, jobs:[{t:"Doctor",l:4},{t:"Nurse",l:2}], openYear:1862, closeYear:null },
+  { name:"Reed Saloon",                owner:"C. Reed",     level:2, jobs:[{t:"Bartender",l:2},{t:"Barkeeper",l:2},{t:"Cook",l:1}], openYear:1871, closeYear:1920 },
+  { name:"Oaks Tailor Shop",           owner:"P. Oaks",     level:2, jobs:[{t:"Tailor",l:2},{t:"Seamstress",l:1}], openYear:1878, closeYear:1965 },
+  { name:"Hobbs National Bank",        owner:"E. Hobbs",    level:3, jobs:[{t:"Manager",l:2},{t:"BankTeller",l:2},{t:"Secretary",l:1}], openYear:1882, closeYear:null },
+  { name:"Crane Fire Station",         owner:"(Town)",      level:3, jobs:[{t:"FireChief",l:3},{t:"Firefighter",l:2},{t:"Firefighter",l:2}], openYear:1895, closeYear:null },
+  { name:"Millhaven Police Dept.",     owner:"(Town)",      level:3, jobs:[{t:"PoliceChief",l:3},{t:"PoliceOfficer",l:2}], openYear:1901, closeYear:null },
+  { name:"Voss Diner",                 owner:"M. Voss",     level:2, jobs:[{t:"Cook",l:1},{t:"Waiter",l:1},{t:"Cashier",l:1}], openYear:1922, closeYear:null },
+  { name:"Dale Auto Repair",           owner:"H. Dale",     level:2, jobs:[{t:"Mechanic",l:2},{t:"Manager",l:2}], openYear:1924, closeYear:null },
+  { name:"Fenn Insurance Agency",      owner:"B. Fenn",     level:3, jobs:[{t:"InsuranceAgent",l:3},{t:"Secretary",l:1}], openYear:1928, closeYear:null },
+  { name:"Millhaven Post Office",      owner:"(Federal)",   level:3, jobs:[{t:"Manager",l:2},{t:"Laborer",l:1}], openYear:1931, closeYear:null },
+  { name:"Reed Pharmacy",              owner:"L. Reed",     level:4, jobs:[{t:"Pharmacist",l:4},{t:"Cashier",l:1}], openYear:1948, closeYear:null },
+  { name:"Hobbs & Sons Law Firm",      owner:"J. Hobbs",    level:4, jobs:[{t:"Lawyer",l:4},{t:"Secretary",l:1}], openYear:1971, closeYear:null },
+];
+
+let selectedBiz = null;
+
+function updateEra() {
+  const year = parseInt(document.getElementById('eraSlider').value);
+  document.getElementById('eraLabel').textContent = year;
+  const active = ERA_BUSINESSES.filter(b => b.openYear <= year && (!b.closeYear || b.closeYear > year));
+  const rows = document.getElementById('ledgerRows');
+  rows.innerHTML = '';
+  active.forEach((biz,i) => {
+    const row = document.createElement('div');
+    row.className = 'ledger-row' + (selectedBiz===biz.name?' selected':'');
+    row.innerHTML = `
+      <span class="lr-name">${biz.name}</span>
+      <span class="lr-owner">${biz.owner}</span>
+      <span class="lr-level"><span class="level-badge lvl-${biz.level}">Lvl ${biz.level}</span></span>
+    `;
+    row.onclick = () => { selectedBiz=biz.name; updateEra(); showBizDetail(biz); };
+    rows.appendChild(row);
+  });
+  if (active.length===0) {
+    rows.innerHTML = '<div style="padding:16px;font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:var(--text-muted)">No businesses active in this era.</div>';
+  }
+  // Rerender selected if still active
+  if (selectedBiz) {
+    const still = active.find(b=>b.name===selectedBiz);
+    if (still) showBizDetail(still);
+    else { selectedBiz=null; document.getElementById('bizDetail').innerHTML='<div style="color:var(--text-muted);font-size:10px;font-family:\'IBM Plex Mono\',monospace">Select a business from the ledger.</div>'; }
+  }
+}
+
+function showBizDetail(biz) {
+  const d = document.getElementById('bizDetail');
+  const estYear = biz.openYear;
+  const closeStr = biz.closeYear ? ` — closed ${biz.closeYear}` : ' — still operating';
+  d.innerHTML = `
+    <div class="biz-detail-name">${biz.name}</div>
+    <div class="biz-detail-row"><span>Owner</span><span>${biz.owner}</span></div>
+    <div class="biz-detail-row"><span>Est.</span><span>${estYear}${closeStr}</span></div>
+    <div class="biz-detail-row"><span>Top job level</span><span><span class="level-badge lvl-${biz.level}">Level ${biz.level}</span></span></div>
+    <div class="biz-employees">
+      <div class="biz-emp-title">Positions</div>
+      ${biz.jobs.map(j=>`<div class="biz-emp-row"><span>${j.t}</span><span><span class="level-badge lvl-${j.l}">Lvl ${j.l}</span></span></div>`).join('')}
+    </div>
+  `;
+}
+
+function buildJobLevelChart() {
+  const levels = [
+    { lvl:5, label:'Level 5 — Elite',          jobs:'Owner, Mayor',                           w:'100%', cls:'lvl-5' },
+    { lvl:4, label:'Level 4 — High Professional',jobs:'Doctor, Lawyer, Architect, Pharmacist', w:'82%',  cls:'lvl-4' },
+    { lvl:3, label:'Level 3 — Professional',    jobs:'Druggist, Realtor, Principal, Mortician',w:'65%',  cls:'lvl-3' },
+    { lvl:2, label:'Level 2 — Skilled Trade',   jobs:'Teacher, Farmer, Bartender, Nurse, Carpenter, …',w:'48%',cls:'lvl-2'},
+    { lvl:1, label:'Level 1 — Laborer',         jobs:'Cashier, Janitor, Cook, Farmhand, Stocker, …',w:'32%',cls:'lvl-1'},
+    { lvl:0, label:'Level 0 — Unemployed',      jobs:'(no job)',                               w:'18%',  cls:'' },
+  ];
+  const container = document.getElementById('jobLevelChart');
+  if (!container) return;
+  container.innerHTML = levels.map(l=>`
+    <div class="jlc-row">
+      <div class="jlc-level">Lvl ${l.lvl}</div>
+      <div class="jlc-bar ${l.cls}" style="width:${l.w};${!l.cls?'background:var(--aged)':''}">
+        <span style="font-family:\'IBM Plex Mono\',monospace;font-size:9px;color:${l.lvl===0?'var(--faded)':'#fff'}">${l.jobs}</span>
+      </div>
+    </div>`).join('');
+}
+
+buildJobLevelChart();
+updateEra();
 </script>
 
 </body>
