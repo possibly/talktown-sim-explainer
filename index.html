@@ -666,6 +666,123 @@
     text-align: right;
   }
 
+  /* ── SECTION LINKS (inline nav anchors in prose) ── */
+  .section-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--rust);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rust);
+    padding-bottom: 1px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .section-link:hover {
+    background: rgba(181,69,27,0.10);
+  }
+
+  /* ── BLOG OVERVIEW ─────────────────────────────── */
+  .blog-lede {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2.2vw, 20px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--text-body);
+    max-width: 720px;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--aged);
+  }
+
+  .blog-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 40px 0 16px;
+  }
+
+  .blog-byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faded);
+    margin-bottom: 32px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .blog-byline-sep { color: var(--aged); }
+
+  .blog-pull {
+    border-left: 3px solid var(--rust);
+    padding: 14px 24px;
+    margin: 32px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--text-body);
+    max-width: 640px;
+    background: rgba(181,69,27,0.04);
+  }
+
+  /* ── TOPIC CARD GRID ───────────────────────────── */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 36px 0 8px;
+  }
+
+  .topic-card {
+    border: 1px solid var(--aged);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    display: block;
+    text-decoration: none;
+  }
+  .topic-card:hover {
+    border-color: var(--rust);
+    background: rgba(181,69,27,0.04);
+  }
+  .topic-card-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faded);
+    margin-bottom: 6px;
+  }
+  .topic-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .topic-card-desc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .topic-card-arrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--rust);
+    margin-top: 10px;
+    display: block;
+  }
+
   /* ── FOOTER RULE ─────────────────────────────── */
   .section-rule {
     height: 1px;
@@ -1000,14 +1117,15 @@
   <div class="header-meta">
     <div>Source: talktown-testbed</div>
     <div>github.com/james-owen-ryan</div>
-    <div style="margin-top:8px">Sections: 9</div>
+    <div style="margin-top:8px">Sections: 10</div>
     <div>Characters: simulated</div>
     <div>Years: 1839 → 1979</div>
   </div>
 </header>
 
 <nav>
-  <button class="active" onclick="showSection('timeline', this)">01 — Timeline</button>
+  <button class="active" onclick="showSection('overview', this)">00 — Overview</button>
+  <button onclick="showSection('timeline', this)">01 — Timeline</button>
   <button onclick="showSection('simulator', this)">02 — Timestep Simulator</button>
   <button onclick="showSection('routine', this)">03 — Routine Decision Tree</button>
   <button onclick="showSection('social', this)">04 — Social Probability</button>
@@ -1021,10 +1139,171 @@
 <main>
 
   <!-- ══════════════════════════════════════════ -->
+  <!-- SECTION 0: OVERVIEW (blog essay)           -->
+  <!-- ══════════════════════════════════════════ -->
+
+  <section id="overview" class="section active">
+    <div class="section-head">
+      <div class="section-num">00</div>
+      <div>
+        <div class="section-title">How Talktown Works</div>
+        <div class="section-desc">A complete walkthrough of the simulation — from the first timestep in 1839 to the last night before gameplay begins</div>
+      </div>
+    </div>
+
+    <div class="blog-byline">
+      <span>Source: talktown-testbed</span>
+      <span class="blog-byline-sep">·</span>
+      <span>github.com/james-owen-ryan</span>
+      <span class="blog-byline-sep">·</span>
+      <span>140 years · 9 systems · 1 small town</span>
+    </div>
+
+    <p class="blog-lede">Talktown is not a game about a small town. It is a small town — one that has been running, unattended, for a hundred and forty years before you arrive. By the time you step into it on the morning of August 19, 1979, its residents have lived full lives: married and divorced, risen through careers and fallen back, formed friendships that hardened into affection and resentments that hardened into something colder. They have faces inherited from grandparents. They hold beliefs about each other that are partly wrong, eroded by the passage of years and the attrition of memory. The town has a shape that no single person designed and no single variable controls. The simulation that generates all of this is the subject of this explainer.</p>
+
+    <h2 class="blog-h2">The Problem of Simulating History</h2>
+
+    <p>Building 140 years of history is, at first pass, a computational absurdity. A single year contains roughly 730 timesteps (a day shift and a night shift for each of 365 days). 140 years is 102,270 timesteps. With a realistic population, each timestep involves character movement, social interaction, belief updates, relationship scoring, and event recording — substantial work per step. Simulating all of it at full fidelity before the game even begins would take too long.</p>
+
+    <p>Talktown's answer is a three-phase strategy that allocates computational effort where it matters most. The first and longest phase is a <strong>lo-fi pass</strong> that spans almost all of recorded history. Rather than simulating every day, it fires a random 0.5% sample — roughly 511 of 102,270 timesteps. Critical civic events (births, deaths, marriages, hirings, retirements, business openings) run on every single day regardless; only the expensive routine-and-socialise cycle is gated behind the sampling roll. When a sampled timestep does fire, it scales relationship progression by the number of elapsed days since the previous simulation, so that six months of unobserved life still produces the friendship that would have accumulated.</p>
+
+    <p>The second phase is a brief <strong>knowledge implantation</strong> step: synthetic reflections are injected into characters' minds so they arrive at the gameplay week with believable awareness of recent history, even though most of that history was never directly simulated at the individual level. The third phase is the <strong>hi-fi week</strong> — the seven days before the player arrives, simulated at full fidelity with every subsystem active: movement, socialisation, observation, belief decay, and a final reflection pass.</p>
+
+    <div class="blog-pull">"The lo-fi pass still records every birth, death, and marriage over 140 years. What it skips is the expensive social cycle — and it compensates by scaling relationship progress to cover the gap."</div>
+
+    <p>The result is 140 years of civic history fully inscribed in the town's ledger — who married whom, which businesses opened and failed, who moved in from elsewhere and who left — even though most individual days were never directly enacted. <a class="section-link" href="#" onclick="navTo('timeline');return false;">→ Explore the 140-Year Timeline</a> to see the three phases side by side with their exact proportions and the configuration values that control them.</p>
+
+    <h2 class="blog-h2">The Timestep Cycle</h2>
+
+    <p>On each timestep that fires, the simulation runs three sequential passes over every resident. First, it <strong>resets</strong> relationship flags from the previous step — clearing the record of who already socialised with whom. Second, it <strong>moves</strong> every character to a new location via their Routine object. Third, it <strong>socialises</strong>: for every pair of characters who now share a location, each independently decides whether to instigate an interaction.</p>
+
+    <p>In hi-fi mode two additional passes run: an <strong>observation</strong> pass, in which characters update their mental models of anyone they can directly see, and a <strong>belief-decay</strong> pass, in which confidence scores erode on facts about people who haven't been seen recently. On the very last timestep of the hi-fi phase, a <strong>reflection</strong> pass also fires, consolidating each character's beliefs into the form they'll carry into the gameplay week.</p>
+
+    <p>The simulator below lets you step through this cycle one timestep at a time, watching each character's location, occasion tag, and social activity change in real time. <a class="section-link" href="#" onclick="navTo('simulator');return false;">→ Open the Timestep Simulator</a></p>
+
+    <h2 class="blog-h2">Routines: Where Everyone Is Going and Why</h2>
+
+    <p>Movement is driven by each character's <code>Routine</code> object, which runs <code>decide_where_to_go()</code> on every timestep. The function is a cascade of conditionals, not a lookup table. Is this person a child? Then during the day they go to school or daycare; at night they go home. Are they an adult with a job whose shift matches the current time of day? Then they go to work — unless they happen to be taking a day off or have called in sick, in which case they fall through to the public-activity branch.</p>
+
+    <p>For adults who are not on shift, the decision becomes probabilistic: a roll weighted by the character's extroversion and openness determines whether they venture out at all. If they do, a second roll decides whether the outing is an errand (drawn from a probability distribution over service types) or a visit to a neighbor, friend, or family member. Friends are ranked by accumulated charge — the best friend wins 50% of the time.</p>
+
+    <p>Each outcome carries an <em>occasion</em> label — 'work', 'school', 'home', 'errand', or 'leisure' — that is stored in the character's Whereabouts record for that timestep and used later by investigators trying to reconstruct someone's movements. <a class="section-link" href="#" onclick="navTo('routine');return false;">→ Walk through the Routine Decision Tree</a> to see every branch and its underlying code.</p>
+
+    <h2 class="blog-h2">The Social Encounter: Probability, Personality, and Relationship</h2>
+
+    <p>Co-presence is the engine of social life in Talktown. When two characters share a location, each independently rolls to decide whether to instigate an interaction. The probability is not fixed — it is assembled at runtime from two components.</p>
+
+    <p>The first is a <strong>personality factor</strong>: the character's extroversion score, scaled and clamped to a range of 0.05–0.50. A highly introverted character rarely initiates; a highly extroverted one does so frequently. The second is a <strong>relationship factor</strong>: an existing friendship adds a flat bonus of +0.15 to the roll; a best-friend bond adds another +0.10 on top. The two components are summed and clamped to a final floor of 0.05 and cap of 0.80. Nobody is socially paralysed; nobody is frictionlessly magnetic.</p>
+
+    <p>If the roll succeeds and they haven't already met, an <code>Acquaintance</code> relationship object is created. If they have met before, <code>progress_relationship()</code> fires — advancing the score that determines whether this pair eventually becomes friends or enemies. In hi-fi mode, a successful interaction also triggers <code>_exchange_information()</code>, spreading gossip and updating mental models. <a class="section-link" href="#" onclick="navTo('social');return false;">→ Adjust the Social Probability sliders</a> to see exactly how personality and relationship combine.</p>
+
+    <h2 class="blog-h2">Friendship as Slow Accumulation</h2>
+
+    <p>Every relationship in Talktown has a <strong>charge</strong> score — a floating-point number that starts at zero when two characters first meet and accumulates with each subsequent interaction. The rate and direction of accumulation are fixed at first meeting: the <em>compatibility</em> term is computed from the distance between the two characters' openness, extroversion, and agreeableness, producing a per-encounter increment that is applied to every future meeting between them. There is no variance between encounters — each meeting adds the same amount, the same sign.</p>
+
+    <p>This means that friendships don't form suddenly. They precipitate out of time. Two compatible people who live near each other and run into each other often will, after enough years of small interactions, cross the +15.0 threshold and become Friends. Two incompatible people forced into proximity by their jobs may, slowly, cross the −10.0 threshold into Enmity. The relationship graph below makes this visible over hundreds of simulated interactions. <a class="section-link" href="#" onclick="navTo('relationships');return false;">→ Watch charge accumulate in the Relationships graph</a></p>
+
+    <h2 class="blog-h2">A Permanent Record: Life Events and the Historical Ledger</h2>
+
+    <p>While all the movement and socialisation and relationship-building is happening, Talktown is keeping a permanent record. Every birth, marriage, divorce, hiring, retirement, business opening, and death is instantiated as a typed event object and stored in two places: the town's <code>events_by_year</code> dictionary and the individual's own event lists (<code>person.marriages</code>, <code>person.occupations</code>, <code>person.moves</code>, and so on).</p>
+
+    <p>Each event carries a precise timestamp — year, month, day — plus an ordinal <code>event_number</code> within the timestep, so that two events on the same morning are distinguishable. The subclass hierarchy covers the full range of civic life: <code>Birth</code>, <code>Marriage</code>, <code>Divorce</code>, <code>Death</code>, <code>Departure</code>, <code>Hiring</code>, <code>Retirement</code>, <code>LayOff</code>, <code>Move</code>, <code>HouseConstruction</code>, <code>BusinessConstruction</code>, <code>BusinessClosure</code>, <code>NameChange</code>.</p>
+
+    <p>This ledger is the substrate for investigation. A player arriving in 1979 can, in principle, uncover that a particular resident was married in 1951, that their spouse died in 1964, that they held a certain job until 1971. All of it exists in the record. The lo-fi pass guarantees that life events are fully recorded even on timesteps that skip the expensive social cycle — the ledger is never incomplete. <a class="section-link" href="#" onclick="navTo('events');return false;">→ Generate a life and read the event record</a></p>
+
+    <h2 class="blog-h2">What Characters Know — and When They're Wrong</h2>
+
+    <p>Every character maintains a set of beliefs about every other person they've encountered, and those beliefs have <strong>confidence scores</strong>. Directly observing someone (seeing them at a shared location in hi-fi mode) brings confidence close to 1.0 on observed features. Receiving a fact through gossip brings it lower. And time without contact steadily erodes confidence on everything — the rate modulated by the observer's <strong>memory score</strong>, a heritable trait that is normally distributed across the population with a documented sex differential.</p>
+
+    <p>When confidence on a belief falls below 50%, the belief may <em>drift</em> — the stored value changes to an incorrect one. Ruth might sincerely believe Eleanor is still a brunette long after Eleanor's hair has gone grey. The belief isn't marked as uncertain; it is simply wrong, silently substituted. Ruth would report it with full conviction.</p>
+
+    <p>Gossip propagates beliefs through the social graph. Each hop multiplies confidence by roughly 0.75 and introduces a 15% chance of distortion. A true fact, passed through four friends, may arrive at the fifth as something subtly incorrect. The gossip chain below lets you step through this propagation one hop at a time and watch confidence decay and distortion accumulate. <a class="section-link" href="#" onclick="navTo('beliefs');return false;">→ Explore Beliefs &amp; Memory</a></p>
+
+    <h2 class="blog-h2">Faces That Remember Their Ancestors</h2>
+
+    <p>Every character in Talktown is also a body. The <code>Face</code> object carries 22 feature types — hair color, eye shape, nose length, and others — each with a string value, a <code>variant_id</code> integer that seeds graphical rendering, and an <code>inherited_from</code> pointer if the feature was passed down through a family line. Inheritance is probabilistic and biased by sex; some features favour the maternal line, others the paternal. The simulation explicitly blocks inheritance of bald, grey, or white hair, preventing the absurdity of children born looking elderly.</p>
+
+    <p>Appearance beliefs are subject to the same memory and decay mechanics as any other knowledge. A witness who met someone once, fifteen years ago, may have drifted confidence on hair color, may remember the eye shape wrong entirely. The faces panel lets you control meetings, elapsed years, and witness memory to see exactly how the gap between a character's true appearance and a witness's belief widens with time. <a class="section-link" href="#" onclick="navTo('faces');return false;">→ Explore Procedural Faces &amp; Appearance</a></p>
+
+    <h2 class="blog-h2">An Economy That Ages with the Town</h2>
+
+    <p>Underpinning all of this is an economy that has evolved across 140 years. Talktown tracks businesses — their type, owner, founding date, and employee roster across day and night shifts — grouped into five job levels. Level matters beyond the obvious: a character's job level adds a fixed <em>salience boost</em> to how strongly they register in others' mental models. The mayor and the doctor are harder to forget than the cashier, because their level increments the salience term that governs how prominently they appear in memory and gossip.</p>
+
+    <p>Hiring is era-constrained. The simulation enforces historical accuracy through preconditions in <code>businesses_config.py</code>: female lawyers couldn't be hired before 1970, secretaries had to be female, laborers had to be male, doctors had to be male before 1966. These constraints are not normative — they prevent the generated world from containing anachronisms that would break period authenticity. Drag the era slider to watch the available job pool shift across the century. <a class="section-link" href="#" onclick="navTo('economy');return false;">→ Browse the Town Economy by era</a></p>
+
+    <h2 class="blog-h2">The Sum of Its Parts</h2>
+
+    <p>What Talktown produces is not a world built from hand-authored events but a world built from <em>process</em>. The timeline ensures history is plausible at scale without being computationally prohibitive. The routine ensures people have reasons for being where they are. The social probability formula ensures that encounters are shaped by character. The charge accumulation model ensures that relationships earn their meaning through repetition. The event ledger ensures that history is retrievable. The belief system ensures that knowledge is personal, partial, and fallible. The face system ensures that bodies carry family resemblance. The economy ensures that work and social status have weight.</p>
+
+    <p>Each of these nine systems is interactive below. The nine tabs above let you step through each one — adjusting parameters, watching animations, and reading the code excerpts that drive the behaviour you're exploring.</p>
+
+    <div class="section-rule"></div>
+
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faded);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Navigate the interactive sections</p>
+
+    <div class="topic-grid">
+      <a class="topic-card" href="#" onclick="navTo('timeline');return false;">
+        <div class="topic-card-num">Section 01</div>
+        <div class="topic-card-title">The 140-Year Timeline</div>
+        <div class="topic-card-desc">Lo-fi sampling, knowledge implantation, hi-fi fidelity — the three-phase history engine.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+      <a class="topic-card" href="#" onclick="navTo('simulator');return false;">
+        <div class="topic-card-num">Section 02</div>
+        <div class="topic-card-title">Timestep Simulator</div>
+        <div class="topic-card-desc">Step through reset → move → socialise and watch the town shift in real time.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+      <a class="topic-card" href="#" onclick="navTo('routine');return false;">
+        <div class="topic-card-num">Section 03</div>
+        <div class="topic-card-title">Routine Decision Tree</div>
+        <div class="topic-card-desc">The full branching logic of <code>decide_where_to_go()</code> — every conditional, every leaf.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+      <a class="topic-card" href="#" onclick="navTo('social');return false;">
+        <div class="topic-card-num">Section 04</div>
+        <div class="topic-card-title">Social Probability</div>
+        <div class="topic-card-desc">Adjust extroversion, openness, and relationship type to see how interaction probability assembles.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+      <a class="topic-card" href="#" onclick="navTo('events');return false;">
+        <div class="topic-card-num">Section 05</div>
+        <div class="topic-card-title">Life Events</div>
+        <div class="topic-card-desc">Generate a full life from birth to death and read every typed event in the historical record.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+      <a class="topic-card" href="#" onclick="navTo('relationships');return false;">
+        <div class="topic-card-num">Section 06</div>
+        <div class="topic-card-title">Relationships</div>
+        <div class="topic-card-desc">Watch charge accumulate across hundreds of interactions until friendships and enmities emerge.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+      <a class="topic-card" href="#" onclick="navTo('beliefs');return false;">
+        <div class="topic-card-num">Section 07</div>
+        <div class="topic-card-title">Beliefs &amp; Memory</div>
+        <div class="topic-card-desc">Drag time forward and watch confidence erode — and gossip propagate distortion through the chain.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+      <a class="topic-card" href="#" onclick="navTo('faces');return false;">
+        <div class="topic-card-num">Section 08</div>
+        <div class="topic-card-title">Procedural Faces</div>
+        <div class="topic-card-desc">22 heritable features, variant seeds, and the gap between true appearance and witness belief.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+      <a class="topic-card" href="#" onclick="navTo('economy');return false;">
+        <div class="topic-card-num">Section 09</div>
+        <div class="topic-card-title">Economy &amp; Occupations</div>
+        <div class="topic-card-desc">Browse businesses across the full timeline and see how era constraints shape the available workforce.</div>
+        <span class="topic-card-arrow">→ explore</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
   <!-- SECTION 1: TIMELINE                        -->
   <!-- ══════════════════════════════════════════ -->
 
-  <section id="timeline" class="section active">
+  <section id="timeline" class="section">
     <div class="section-head">
       <div class="section-num">01</div>
       <div>
@@ -1595,6 +1874,12 @@ function showSection(id, btn) {
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
+}
+
+function navTo(id) {
+  const btn = document.querySelector(`nav button[onclick*="'${id}'"]`);
+  showSection(id, btn);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ── DECISION TREE ─────────────────────────────────────────────
