@@ -494,10 +494,28 @@
     text-align: center;
     line-height: 1.5;
     position: relative;
-    cursor: default;
+    cursor: pointer;
     transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
   }
   .tree-box:hover { filter: brightness(0.95); }
+  .tree-box.selected { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .tree-code-panel {
+    margin-top: 20px;
+    padding: 14px 18px;
+    background: var(--aged);
+    border-left: 3px solid var(--gold);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-body);
+    white-space: pre-wrap;
+    display: none;
+    max-width: 720px;
+  }
+  .tree-code-panel.visible { display: block; }
 
   .tree-box.condition {
     border-color: var(--slate);
@@ -1197,11 +1215,12 @@
       </div>
     </div>
 
-    <p>Every character has a <code>Routine</code> object. On each timestep, <code>enact()</code> calls <code>decide_where_to_go()</code>, which cascades through a series of conditionals to pick both a <em>destination</em> and an <em>occasion</em> label. Hover any node to see the underlying code.</p>
+    <p>Every character has a <code>Routine</code> object. On each timestep, <code>enact()</code> calls <code>decide_where_to_go()</code>, which cascades through a series of conditionals to pick both a <em>destination</em> and an <em>occasion</em> label. Tap any node to see the underlying code.</p>
 
     <div class="tree-container">
       <div class="tree" id="decisionTree"></div>
     </div>
+    <div class="tree-code-panel" id="treeCodePanel"></div>
 
     <div class="callout">
       <strong>occasion values</strong> recorded in Whereabouts:<br>
@@ -1603,27 +1622,27 @@ function showSection(id, btn) {
   container.innerHTML = `
   <div style="display:flex;flex-direction:column;align-items:center;gap:0">
 
-    <div class="tree-box condition" title="routine.enact() → decide_where_to_go()" style="width:280px">Person needs to go somewhere</div>
+    <div class="tree-box condition" data-code="routine.enact() → decide_where_to_go()" style="width:280px">Person needs to go somewhere</div>
     <div class="tree-line"></div>
 
     <!-- Level 1: adult? -->
-    <div class="tree-box condition" title="if not self.person.adult:" style="width:220px">Adult?</div>
+    <div class="tree-box condition" data-code="if not self.person.adult:" style="width:220px">Adult?</div>
     <div style="display:flex;width:580px;align-items:flex-start;gap:0">
       <!-- NO branch (child) -->
       <div style="flex:1;display:flex;flex-direction:column;align-items:center">
         <div class="connector-bar" style="width:1px;height:20px;background:var(--aged)"></div>
         <div class="tree-branch-label">NO — child</div>
-        <div class="tree-box condition" title="if self.person.game.time_of_day == 'day':" style="width:140px">Daytime?</div>
+        <div class="tree-box condition" data-code="if self.person.game.time_of_day == 'day':" style="width:140px">Daytime?</div>
         <div style="display:flex;width:280px;gap:0">
           <div style="flex:1;display:flex;flex-direction:column;align-items:center">
             <div style="width:1px;height:20px;background:var(--aged)"></div>
             <div class="tree-branch-label">YES</div>
-            <div class="tree-box leaf-school" title="_go_to_school_or_daycare()" style="width:120px;font-size:10px">School /<br>Daycare</div>
+            <div class="tree-box leaf-school" data-code="_go_to_school_or_daycare()" style="width:120px;font-size:10px">School /<br>Daycare</div>
           </div>
           <div style="flex:1;display:flex;flex-direction:column;align-items:center">
             <div style="width:1px;height:20px;background:var(--aged)"></div>
             <div class="tree-branch-label">NO</div>
-            <div class="tree-box leaf-home" title="self.person.home, occasion='home'" style="width:120px;font-size:10px">Home<br>(bedtime)</div>
+            <div class="tree-box leaf-home" data-code="self.person.home, occasion='home'" style="width:120px;font-size:10px">Home<br>(bedtime)</div>
           </div>
         </div>
       </div>
@@ -1632,23 +1651,23 @@ function showSection(id, btn) {
       <div style="flex:1;display:flex;flex-direction:column;align-items:center">
         <div style="width:1px;height:20px;background:var(--aged)"></div>
         <div class="tree-branch-label">YES — adult</div>
-        <div class="tree-box condition" title="elif self.person.occupation and occupation.shift == time_of_day:" style="width:175px">Employed &amp;<br>on shift?</div>
+        <div class="tree-box condition" data-code="elif self.person.occupation and occupation.shift == time_of_day:" style="width:175px">Employed &amp;<br>on shift?</div>
         <div style="display:flex;width:300px;gap:0">
           <!-- working -->
           <div style="flex:1;display:flex;flex-direction:column;align-items:center">
             <div style="width:1px;height:20px;background:var(--aged)"></div>
             <div class="tree-branch-label">YES</div>
-            <div class="tree-box condition" title="random < chance_doesnt_have_to_work or random < chance_calls_in_sick" style="width:130px;font-size:10px">Day off<br>or sick?</div>
+            <div class="tree-box condition" data-code="random < chance_doesnt_have_to_work or random < chance_calls_in_sick" style="width:130px;font-size:10px">Day off<br>or sick?</div>
             <div style="display:flex;width:260px;gap:0">
               <div style="flex:1;display:flex;flex-direction:column;align-items:center">
                 <div style="width:1px;height:20px;background:var(--aged)"></div>
                 <div class="tree-branch-label" style="font-size:8px">YES</div>
-                <div class="tree-box leaf-errand" title="_go_in_public()" style="width:100px;font-size:9px">Public/<br>Home</div>
+                <div class="tree-box leaf-errand" data-code="_go_in_public()" style="width:100px;font-size:9px">Public/<br>Home</div>
               </div>
               <div style="flex:1;display:flex;flex-direction:column;align-items:center">
                 <div style="width:1px;height:20px;background:var(--aged)"></div>
                 <div class="tree-branch-label" style="font-size:8px">NO</div>
-                <div class="tree-box leaf-work" title="self.person.occupation.company, occasion='work'" style="width:100px;font-size:9px">Work</div>
+                <div class="tree-box leaf-work" data-code="self.person.occupation.company, occasion='work'" style="width:100px;font-size:9px">Work</div>
               </div>
             </div>
           </div>
@@ -1656,17 +1675,17 @@ function showSection(id, btn) {
           <div style="flex:1;display:flex;flex-direction:column;align-items:center">
             <div style="width:1px;height:20px;background:var(--aged)"></div>
             <div class="tree-branch-label">NO</div>
-            <div class="tree-box condition" title="chance = (extroversion + openness) / 2&#10;adjusted for kids_at_home&#10;clamped to floor/cap" style="width:140px;font-size:10px">Personality<br>roll to go out</div>
+            <div class="tree-box condition" data-code="chance = (extroversion + openness) / 2&#10;adjusted for kids_at_home&#10;clamped to floor/cap" style="width:140px;font-size:10px">Personality<br>roll to go out</div>
             <div style="display:flex;width:280px;gap:0">
               <div style="flex:1;display:flex;flex-direction:column;align-items:center">
                 <div style="width:1px;height:20px;background:var(--aged)"></div>
                 <div class="tree-branch-label" style="font-size:8px">SUCCESS</div>
-                <div class="tree-box leaf-errand" title="_go_in_public() → errand or visit" style="width:100px;font-size:9px">Public<br>(errand/visit)</div>
+                <div class="tree-box leaf-errand" data-code="_go_in_public() → errand or visit" style="width:100px;font-size:9px">Public<br>(errand/visit)</div>
               </div>
               <div style="flex:1;display:flex;flex-direction:column;align-items:center">
                 <div style="width:1px;height:20px;background:var(--aged)"></div>
                 <div class="tree-branch-label" style="font-size:8px">FAIL</div>
-                <div class="tree-box leaf-home" title="self.person.home, occasion='home'" style="width:100px;font-size:9px">Home</div>
+                <div class="tree-box leaf-home" data-code="self.person.home, occasion='home'" style="width:100px;font-size:9px">Home</div>
               </div>
             </div>
           </div>
@@ -1675,6 +1694,25 @@ function showSection(id, btn) {
     </div>
   </div>
   `;
+
+  const panel = document.getElementById('treeCodePanel');
+  document.getElementById('decisionTree').addEventListener('click', function(e) {
+    const box = e.target.closest('.tree-box');
+    if (!box) return;
+    const code = box.dataset.code;
+    if (!code) return;
+    const prev = document.querySelector('.tree-box.selected');
+    if (prev === box) {
+      prev.classList.remove('selected');
+      panel.textContent = '';
+      panel.classList.remove('visible');
+      return;
+    }
+    if (prev) prev.classList.remove('selected');
+    box.classList.add('selected');
+    panel.textContent = code;
+    panel.classList.add('visible');
+  });
 })();
 
 // ── SOCIAL CALC ───────────────────────────────────────────────
