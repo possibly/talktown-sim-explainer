@@ -1175,7 +1175,7 @@
 
     <h2 class="blog-h2">The Timestep Cycle</h2>
 
-    <p>On each timestep that fires, the simulation runs three sequential passes over every resident. First, it <strong>resets</strong> relationship flags from the previous step — clearing the record of who already socialised with whom. Second, it <strong>moves</strong> every character to a new location via their Routine object. Third, it <strong>socialises</strong>: for every pair of characters who now share a location, each independently decides whether to instigate an interaction.</p>
+    <p>On each enacted timestep — whether a sampled step in the lo-fi phase or any step in the hi-fi week — the simulation runs three sequential passes over every resident. First, it <strong>resets</strong> relationship flags from the previous step — clearing the record of who already socialised with whom. Second, it <strong>moves</strong> every character to a new location via their Routine object. Third, it <strong>socialises</strong>: for every pair of characters who now share a location, each independently decides whether to instigate an interaction.</p>
 
     <p>In hi-fi mode two additional passes run: an <strong>observation</strong> pass, in which characters update their mental models of anyone they can directly see, and a <strong>belief-decay</strong> pass, in which confidence scores erode on facts about people who haven't been seen recently. On the very last timestep of the hi-fi phase, a <strong>reflection</strong> pass also fires, consolidating each character's beliefs into the form they'll carry into the gameplay week.</p>
 
